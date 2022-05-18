@@ -22,11 +22,10 @@ int main()
 	while (1)
 	{
 		buf = malloc(sizeof(char) * (256));
-		cmd = readline("minihell> ");
+		cmd = readline("minihell %> ");
 		cmd_split = ft_split(cmd, ' ');
 		while (cmd_split[size])
 			size++;
-		printf("%%>\n");
 		if (size > 0)
 		{
 			if (!ft_strncmp("cd", cmd_split[0], 3))

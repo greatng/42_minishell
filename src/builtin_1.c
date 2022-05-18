@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/18 23:25:15 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:36:54 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	change_dir(char *dir)
 {
 	if (!dir)
-		chdir("~");
-	if (chdir(dir))
+		chdir(getenv("HOME"));
+	else if (chdir(dir))
 		perror("");
 }
 
