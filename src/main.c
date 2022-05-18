@@ -22,7 +22,7 @@ int main()
 	while (1)
 	{
 		buf = malloc(sizeof(char) * (256));
-		cmd = readline("minihell %> ");
+		cmd = readline(GREEN "minihell" RES RED" § " RES);
 		cmd_split = ft_split(cmd, ' ');
 		while (cmd_split[size])
 			size++;
@@ -36,6 +36,10 @@ int main()
 				shell_echo(cmd);
 			if (!ft_strncmp("exit", cmd_split[0], 5))
 				shell_exit();
+			if (!ft_strncmp("ls", cmd_split[0], 3))
+				shell_ls();
+			if (!ft_strncmp("clear", cmd_split[0], 6))
+				shell_clear();
 		}
 		// shell_echo(echo1);
 		// shell_echo(echo2);
