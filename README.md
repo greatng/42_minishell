@@ -12,6 +12,8 @@ exit -> done (very nasty one)
 
 ls -> done (not require but for easier usage/ no option)
 
+clear -> done
+
 just a quick coding not sure if it really work well
 
 **waitlist**
