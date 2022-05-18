@@ -1,5 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/greatng/42Bangkok/42cursus/minishell'
-gcc -Wall -Wextra -Werror -lreadline libft/libft.a src/*.c
+gcc -lreadline libft/libft.a src/*.c
 make: Leaving directory `/Users/greatng/42Bangkok/42cursus/minishell'
  

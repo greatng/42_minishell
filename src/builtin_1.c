@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/18 23:06:06 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:25:15 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	change_dir(char *dir)
 {
+	if (!dir)
+		chdir("~");
 	if (chdir(dir))
 		perror("");
 }
@@ -33,7 +35,7 @@ static	void	print_echo(char **echo, size_t i, size_t size, int newline)
 		ft_putchar_fd(' ', STDOUT_FILENO);
 		free(echo[i++]);
 	}
-	if (newline)
+	if (!newline)
 		ft_putendl_fd(echo[i], STDOUT_FILENO);
 	else
 		ft_putstr_fd(echo[i], STDOUT_FILENO);

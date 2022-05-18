@@ -1,6 +1,7 @@
 CC		=	gcc
+TESTFLAG	=	-lreadline
 CFLAG		=	-Wall -Wextra -Werror -lreadline
 
 
 all 		:
-			@$(CC) $(CFLAG) libft/libft.a src/*.c
+			@$(CC) $(TESTFLAG) libft/libft.a src/*.c
