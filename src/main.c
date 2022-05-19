@@ -31,6 +31,8 @@ int main()
 			size++;
 		if (size > 0)
 		{
+			if (!cmd_split[0])
+				continue;
 			if (!ft_strncmp("cd", cmd_split[0], 3))
 				change_dir(cmd_split[1]);
 			if (!ft_strncmp("pwd", cmd_split[0], 4))
