@@ -1,5 +1,7 @@
 # 42_minishell
 
+See notion here [Click](https://painted-march-a4f.notion.site/42_minishell-e3af60554a734a439efe42f48886c5aa)
+
 ***built in fn***
 
 cd -> need to implement '~' path ($HOME path)
