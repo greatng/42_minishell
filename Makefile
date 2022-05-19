@@ -2,14 +2,15 @@ NAME			=	minishell
 
 LEAKS			=	-fsanitize=address -fno-omit-frame-pointer
 CC			=	gcc
-CFLAGS			=	-Wall -Wextra -Wextra -lreadline
+CFLAGS			=	-Wall -Wextra -Wextra
+READFLAG		=	-lreadline 
 
 HEADER_DIR		=	include
 HEADER			=	minishell builtin
 HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
-SRC			=	main builtin_1 additional_fn
+SRC			=	main builtin_1 additional_fn signal
 SRCS 			=	$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
 OBJ_DIR			=	obj
@@ -28,7 +29,7 @@ all:				$(NAME)
 
 $(NAME):			$(OBJ) libft
 					@echo "$(GREEN)Compiling:$(NORMAL)"
-					$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $@
+					$(CC) $(CFLAGS) $(READFLAG) $(LEAKS) $(OBJ) $(LIBFT) -o $@
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c	$(HEADERS)
 					@mkdir -p $(OBJ_DIR)
@@ -37,10 +38,6 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c	$(HEADERS)
 libft:
 					@make -C ./libft/		
 					
-
-leaks:				$(NAME)
-					@echo "$(GREEN)For Leaks Check:$(NORMAL)"
-					$(CC) $(LEAKS) $(SRCS) -o $(NAME)
 
 clean:
 					@$(RM) -rf $(OBJ) $(OBJ_B) $(OBJ_DIR)
@@ -51,7 +48,7 @@ fclean:				clean
 					
 re:					fclean all
 
-.PHONY:				all clean fclean re libft leaks
+.PHONY:				all clean fclean re libft
 
 pig:				
 					@echo "$(SALMON)                         .....            :!????7!^:\n\

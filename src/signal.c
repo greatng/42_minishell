@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 21:52:24 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/19 14:57:32 by pngamcha         ###   ########.fr       */
+/*   Created: 2022/05/19 14:49:20 by pngamcha          #+#    #+#             */
+/*   Updated: 2022/05/19 15:26:33 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "../include/minishell.h"
 
-# include "minishell.h"
+static void	shell_sighandler(int sig)
+{
+	if (sig == SIGINT)
+		printf("\nstill can't figure out");
+	if (sig == SIGQUIT)
+		return ;
+}
 
-void	change_dir(char *dir);
-void	present_wd(void);
-void	shell_echo(char *str);
-void	shell_exit(void);
-
-//Additional function for better usage won't hurt XD
-
-void	shell_ls(void);
-void	shell_clear(void);
-
-#endif
+void	shell_signal(void)
+{
+	signal(SIGINT, shell_sighandler);
+	signal(SIGQUIT, shell_sighandler);
+	//signal()
+}

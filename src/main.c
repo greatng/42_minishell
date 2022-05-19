@@ -10,19 +10,22 @@
 int main()
 {
 	char	*cmd;
-	char	echo1[] = "echo";
-	char	echo2[] = "echo Hello this is echo test";
-	char	echo3[] = "echo     -n This is echo without new line";
-	char	echo4[] = "echo -n";
-	char	echo5[] = "echo -n \'test\'";
+	// char	echo1[] = "echo";
+	// char	echo2[] = "echo Hello this is echo test";
+	// char	echo3[] = "echo     -n This is echo without new line";
+	// char	echo4[] = "echo -n";
+	// char	echo5[] = "echo -n \'test\'";
 	char	*buf;
 	char	**cmd_split;
 	int	size = 0;
 
+	shell_signal();
 	while (1)
 	{
 		buf = malloc(sizeof(char) * (256));
 		cmd = readline(GREEN "minihell" RES RED" § " RES);
+		if (!cmd)
+			continue;
 		cmd_split = ft_split(cmd, ' ');
 		while (cmd_split[size])
 			size++;
