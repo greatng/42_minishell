@@ -3,14 +3,14 @@ NAME			=	minishell
 LEAKS			=	-fsanitize=address -fno-omit-frame-pointer
 CC			=	gcc
 CFLAGS			=	-Wall -Wextra -Wextra
-READFLAG		=	-lreadline 
+READFLAG		=	-lreadline
 
 HEADER_DIR		=	include
 HEADER			=	minishell builtin
 HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
-SRC			=	main builtin_1 additional_fn signal
+SRC			=	main builtin_1 additional_fn signal 1_phrase_utils 2_lexer 3_parser 4_free_phrase
 SRCS 			=	$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
 OBJ_DIR			=	obj

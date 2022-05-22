@@ -1,8 +1,8 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/greatng/42Bangkok/42cursus/minishell'
 make -C ./libft/		
- 
 echo "\033[38;5;2mCompiling:\033[38;5;255m"
-gcc -Wall -Wextra -Wextra -lreadline  -fsanitize=address -fno-omit-frame-pointer obj/main.o obj/builtin_1.o obj/additional_fn.o obj/signal.o libft/libft.a -o minishell
+ 
+gcc -Wall -Wextra -Wextra -lreadline -fsanitize=address -fno-omit-frame-pointer obj/main.o obj/builtin_1.o obj/additional_fn.o obj/signal.o obj/1_phrase_utils.o obj/2_lexer.o obj/3_parser.o obj/4_free_phrase.o libft/libft.a -o minishell
 make: Leaving directory `/Users/greatng/42Bangkok/42cursus/minishell'
  

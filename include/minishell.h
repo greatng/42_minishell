@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/19 15:18:20 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/22 12:44:30 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <dirent.h>
+# include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
 # include "../libft/libft.h"
 # include "builtin.h"
+# include "phrase.h"
 
 # define CLEAR_SCRN "\033[2J \033[H"
 
