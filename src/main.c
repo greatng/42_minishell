@@ -1,11 +1,14 @@
 #include "../include/minishell.h"
 
-int main()
+t_mini	g_mini;
+
+int	main(int argc, char **argv, char **env)
 {
 	static char	*line_read = NULL;
 	char	**lex;
 	char	***cmd_split;
 
+	convert_arg(argc, argv, env);
 	shell_signal();
 	while (1)
 	{
@@ -29,6 +32,7 @@ int main()
 			else if (!ft_strncmp("clear", cmd_split[i][0], 6))
 				shell_clear();
 		}
+		// print_env();
 		free(line_read);
 		line_read = NULL;
 	}

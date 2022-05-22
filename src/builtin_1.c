@@ -6,11 +6,13 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/22 14:21:08 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/23 00:26:39 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/builtin.h"
+
+extern t_mini	g_mini;
 
 void	change_dir(char *dir)
 {
@@ -67,5 +69,12 @@ void	shell_echo(char **echo)
 
 void	shell_exit(void)
 {
+	int	i;
+
+	i = 0;
+	while (g_mini.env[i])
+		free(g_mini.env[i++]);
+	free(g_mini.env);
+	printf(RED"\nExiting shell...\n"RES);
 	exit(EXIT_SUCCESS);
 }

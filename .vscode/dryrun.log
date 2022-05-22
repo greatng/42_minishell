@@ -1,10 +1,13 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/greatng/42Bangkok/42cursus/minishell'
 mkdir -p obj
-gcc -Wall -Wextra -Wextra -c src/rl_get.c -o obj/rl_get.o 
+gcc -Wall -Wextra -Wextra -c src/main.c -o obj/main.o 
+ 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/convert.c -o obj/convert.o 
+ 
 make -C ./libft/		
 echo "\033[38;5;2mCompiling:\033[38;5;255m"
- 
-gcc -Wall -Wextra -Wextra -lreadline -fsanitize=address -fno-omit-frame-pointer obj/main.o obj/builtin_1.o obj/additional_fn.o obj/signal.o obj/1_phrase_utils.o obj/2_lexer.o obj/3_parser.o obj/4_free_phrase.o obj/rl_get.o libft/libft.a -o minishell
+gcc -Wall -Wextra -Wextra -lreadline -fsanitize=address -fno-omit-frame-pointer obj/main.o obj/builtin_1.o obj/additional_fn.o obj/signal.o obj/1_phrase_utils.o obj/2_lexer.o obj/3_parser.o obj/4_free_phrase.o obj/rl_get.o obj/convert.o libft/libft.a -o minishell
 make: Leaving directory `/Users/greatng/42Bangkok/42cursus/minishell'
  
