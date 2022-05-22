@@ -1,20 +1,21 @@
 #include "../include/minishell.h"
 
-int main()
+t_mini	g_mini;
+
+int	main(int argc, char **argv, char **env)
 {
-	char	*cmd;
+	static char	*line_read = NULL;
 	char	**lex;
-	char	*buf;
 	char	***cmd_split;
 
+	convert_arg(argc, argv, env);
 	shell_signal();
 	while (1)
 	{
-		buf = malloc(sizeof(char) * (256));
-		cmd = readline(GREEN "minihell" RES RED" § " RES);
-		if (!cmd)
-			continue;
-		lex = lexer(cmd);
+		line_read = rl_gets(line_read);
+		if (!line_read)
+			shell_exit();
+		lex = lexer(line_read);
 		cmd_split = parser(lex);
 		for (int i = 0; cmd_split[i]; i++)
 		{
@@ -31,8 +32,9 @@ int main()
 			else if (!ft_strncmp("clear", cmd_split[i][0], 6))
 				shell_clear();
 		}
-		free(buf);
-		free(cmd);
+		// print_env();
+		free(line_read);
+		line_read = NULL;
 	}
 	return 0;
 }
