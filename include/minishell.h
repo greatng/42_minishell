@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/22 12:44:30 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/22 17:22:05 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 # define RES "\033[0m"
 
 void	shell_signal(void);
+char	*rl_gets (char *line_read);
 
 #endif
