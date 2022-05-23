@@ -6,19 +6,13 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 23:58:54 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/23 00:22:14 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/23 10:18:16 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 extern	t_mini	g_mini;
-
-void	print_env(void)
-{
-	for (int i = 0; g_mini.env[i]; i++)
-		printf("%s\n", g_mini.env[i]);
-}
 
 void	convert_arg(int argc, char **argv, char **env)
 {
