@@ -32,7 +32,7 @@ int	main(int argc, char **argv, char **env)
 			else if (!ft_strncmp("clear", cmd_split[i][0], 6))
 				shell_clear();
 			else if (!ft_strncmp("env", cmd_split[i][0], 4))
-				print_env();
+				print_env(cmd_split[i]);
 		}
 		free(line_read);
 		line_read = NULL;
