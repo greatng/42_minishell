@@ -11,7 +11,7 @@ HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
 SRC			=	main builtin_1 additional_fn signal 1_phrase_utils 2_lexer 3_parser 4_free_phrase \
-					rl_get convert
+					rl_get convert builtin_2
 SRCS 			=	$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
 OBJ_DIR			=	obj
