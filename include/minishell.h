@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/23 00:24:19 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/23 13:11:43 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct	s_mini
 void	shell_signal(void);
 
 //for test env converter
-void	print_env(void);
+void	print_env(char **cmd);
 //env converter from stack to heap memory, ready to rock
 void	convert_arg(int argc, char **argv, char **env);
 
