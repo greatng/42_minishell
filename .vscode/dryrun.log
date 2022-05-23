@@ -1,5 +1,27 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/greatng/42Bangkok/42cursus/minishell'
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/main.c -o obj/main.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/builtin_1.c -o obj/builtin_1.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/additional_fn.c -o obj/additional_fn.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/signal.c -o obj/signal.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/1_phrase_utils.c -o obj/1_phrase_utils.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/2_lexer.c -o obj/2_lexer.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/3_parser.c -o obj/3_parser.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/4_free_phrase.c -o obj/4_free_phrase.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/rl_get.c -o obj/rl_get.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/convert.c -o obj/convert.o 
+mkdir -p obj
+gcc -Wall -Wextra -Wextra -c src/builtin_2.c -o obj/builtin_2.o 
 make -C ./libft/		
 echo "\033[38;5;2mCompiling:\033[38;5;255m"
 gcc -Wall -Wextra -Wextra -lreadline -fsanitize=address -fno-omit-frame-pointer obj/main.o obj/builtin_1.o obj/additional_fn.o obj/signal.o obj/1_phrase_utils.o obj/2_lexer.o obj/3_parser.o obj/4_free_phrase.o obj/rl_get.o obj/convert.o obj/builtin_2.o libft/libft.a -o minishell
