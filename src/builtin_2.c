@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:17:34 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/23 13:16:18 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/23 13:26:06 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ void	print_env(char **cmd)
 		i++;
 	if (i != 1)
 	{
-		printf("%s: %s: No such file or directory\n", cmd[0], cmd[1]);
+		ft_putstr_fd(cmd[0], STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putstr_fd(cmd[1], STDERR_FILENO);
+		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
 		g_mini.exit_status = 127;
 		return ;
 	}
 	else
-		i = 1;
-	while (g_mini.env[i])
-		printf("%s\n", g_mini.env[i++]);
+		while (g_mini.env[i])
+			printf("%s\n", g_mini.env[i++]);
 }
