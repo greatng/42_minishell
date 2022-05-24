@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:55:27 by pratanac          #+#    #+#             */
-/*   Updated: 2022/05/22 12:39:52 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:02:14 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	able_to_phrase(char *str)
 	int		i;
 	int		flag;
 	char	quote;
-	
+
 	i = 0;
 	flag = 0;
 	while (str[i])
@@ -54,7 +54,7 @@ int	is_pipe_error(char *line)
 		if (line[i] == '|')
 		{
 			if (last)
-				return(1);
+				return (1);
 			last = 1;
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:49:20 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/22 17:37:03 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 11:54:14 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	shell_sighandler(int sig)
 
 void	shell_signal(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sa.sa_handler = shell_sighandler;
 	sigemptyset(&sa.sa_mask);

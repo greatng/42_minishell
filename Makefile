@@ -1,6 +1,5 @@
 NAME			=	minishell
 
-LEAKS			=	-fsanitize=address -fno-omit-frame-pointer
 CC			=	gcc
 CFLAGS			=	-Wall -Wextra -Wextra
 READFLAG		=	-lreadline
@@ -10,8 +9,9 @@ HEADER			=	minishell builtin
 HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
-SRC			=	main builtin_1 additional_fn signal 1_phrase_utils 2_lexer 3_parser 4_free_phrase \
-					rl_get convert builtin_2
+SRC			=	main builtin_1 builtin_2 additional_fn signal \
+					1_phrase_utils 2_lexer 3_parser 4_free_phrase \
+					rl_get con_exec 1_quote_utils 2_translate_vars
 SRCS 			=	$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
 OBJ_DIR			=	obj
@@ -30,7 +30,7 @@ all:				$(NAME)
 
 $(NAME):			$(OBJ) libft
 					@echo "$(GREEN)Compiling:$(NORMAL)"
-					$(CC) $(CFLAGS) $(READFLAG) $(LEAKS) $(OBJ) $(LIBFT) -o $@
+					$(CC) $(CFLAGS) $(READFLAG) $(OBJ) $(LIBFT) -o $@
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c	$(HEADERS)
 					@mkdir -p $(OBJ_DIR)

@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:02:35 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/20 09:49:34 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:04:38 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	shell_ls(void)
 {
-	DIR *d;
-	struct dirent *filename;
+	DIR				*d;
+	struct dirent	*filename;
 
 	d = opendir(getcwd(NULL, 1024));
 	if (!d)
