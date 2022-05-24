@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:52:24 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/22 14:02:56 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 11:49:30 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	change_dir(char *dir);
 void	present_wd(void);
 void	shell_echo(char **echo);
 void	shell_exit(void);
+void	print_env(char **cmd);
 
 //Additional function for better usage won't hurt XD
 
