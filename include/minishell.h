@@ -54,6 +54,7 @@ void	convert_var(char ***cmd);
 void	shell_execute(char ***cmd);
 
 char	*rl_gets(char *line_read);
+
 //free every malloc var at the end of every loop
 void	end_of_loop(char *line);
 

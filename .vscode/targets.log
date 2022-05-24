@@ -16,6 +16,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
  
 # automatic
+ 
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 20)
 OBJ = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC)))
@@ -63,7 +64,7 @@ SALMON = \033[38;5;174m
 PATH = /Users/greatng/bin:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:/usr/local/bin:/Users/greatng/Library/Python/3.8/bin:/Applications/VMware Fusion Tech Preview.app/Contents/Public:/usr/local/go/bin:/opt/X11/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/greatng/.cache/zsh4humans/v5/fzf/bin
 # environment
 LSCOLORS = ExGxDxDxCxDxDxFxFxexEx
-# makefile (from `Makefile', line 6)
+# makefile (from `Makefile', line 5)
 READFLAG = -lreadline
 # environment
 VSCODE_LOG_STACK = false
@@ -107,7 +108,7 @@ VSCODE_CODE_CACHE_PATH = /Users/greatng/Library/Application Support/Code/CachedD
 LOGNAME = greatng
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# makefile (from `Makefile', line 10)
+# makefile (from `Makefile', line 9)
 HEADERS = $(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
@@ -134,6 +135,7 @@ CC = gcc
 MAKE_VERSION := 3.81
 # environment
 USER = greatng
+ 
 # makefile
 .DEFAULT_GOAL := all
 # makefile (from `Makefile', line 1)
@@ -144,7 +146,7 @@ LESS = -iRFXMx4
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
-# makefile (from `Makefile', line 8)
+# makefile (from `Makefile', line 7)
 HEADER_DIR = include
 # default
 .VARIABLES := 
@@ -178,7 +180,7 @@ __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
-# makefile (from `Makefile', line 12)
+# makefile (from `Makefile', line 11)
 SRC_DIR = src
 # automatic
 <F = $(notdir $<)
@@ -270,6 +272,7 @@ pig:
 	.5&&&&&&&&&&&&&$(HOTPINK)#BPPPP5PP55PPPPB$(SALMON)&&&&&&&&&&&&&&&&!\n\
 	7&&&&&&&&&&&&&&$(HOTPINK)#PPPP?^5P!~PPPPG&$(SALMON)&&&#######&&&&&5.\n\
 	.Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#BBGBGBB##&&&B:\n\
+ 
 	J&&&##BBBBBB##&&&&$(HOTPINK)#BBBBBB#PB$(SALMON)&&&&&##BGGPPGBB#&&&P.\n\
 	:B&&#BBGPPGGB##&&&&#JYPPPJ?B&&&&&&#BBGGGBB##&&#!\n\
 	^G&&#BBGGGBB#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
@@ -409,7 +412,7 @@ obj/2_translate_vars.o:
 #  File has not been updated.
 
 # Not a target:
-.DEFAULT:
+obj/2_translate_vars.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -425,6 +428,13 @@ re: fclean all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
+ 
+#  File has not been updated.
+
+# Not a target:
+obj/con_exec.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
