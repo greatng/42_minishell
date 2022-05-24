@@ -4,11 +4,11 @@ See notion here [Click](https://painted-march-a4f.notion.site/42_minishell-e3af6
 
 ***built in fn***
 
-cd -> need to implement '~' path ($HOME path)
+cd -> done (need to update PWD variable in env)
 
 pwd -> done
 
-echo -n -> done (Have double/single qoute when echo)
+echo -n -> done
 
 exit -> done (very nasty one)
 
@@ -18,11 +18,10 @@ clear -> done
 
 env -> done
 
+unset -> done
+
+export -> done
+
 just a quick coding not sure if it really work well
 
 **waitlist**
-
-export
-
-unset
-
