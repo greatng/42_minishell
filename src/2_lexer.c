@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:55:17 by pratanac          #+#    #+#             */
-/*   Updated: 2022/05/22 12:40:00 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:08:12 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static int	count_w(char *line, int index)
 	flag = 0;
 	if (line[index + i] == '|')
 		return (1);
-	while (line[index + i] && (flag || (line[index + i] != ' ' && line[index + i] != '|')))
+	while (line[index + i] && (flag || (line[index + i] \
+		!= ' ' && line[index + i] != '|')))
 	{
 		if (!flag && (line[index + i] == '\'' || line[index + i] == '\"'))
 		{
@@ -98,7 +99,7 @@ static char	*dup_w(char *line, int index, int word_len)
 		i++;
 	}
 	word[i] = '\0';
-	return (word);	
+	return (word);
 }
 
 char	**lexer(char *line)

@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/23 00:24:19 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:09:42 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 # include <unistd.h>
 # include <dirent.h>
 # include <signal.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <errno.h>
 
 # include "../libft/libft.h"
 # include "builtin.h"
 # include "phrase.h"
+# include "quote.h"
 
 # define CLEAR_SCRN "\033[2J \033[H"
 
@@ -33,20 +36,23 @@
 # define CYAN "\033[0;36m"
 # define RES "\033[0m"
 
-typedef struct	s_mini
+typedef struct s_mini
 {
 	char	**env;
-	int	exit_status;
+	int		exit_status;
 }	t_mini;
+
+t_mini	g_mini;
 
 //not completed yet
 void	shell_signal(void);
-
-//for test env converter
-void	print_env(void);
 //env converter from stack to heap memory, ready to rock
 void	convert_arg(int argc, char **argv, char **env);
+//translate any $VAR
+void	convert_var(char ***cmd);
+//execute cmd
+void	shell_execute(char ***cmd);
 
-char	*rl_gets (char *line_read);
+char	*rl_gets(char *line_read);
 
 #endif

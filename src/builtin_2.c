@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   builtin_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 14:49:20 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 11:54:14 by pngamcha         ###   ########.fr       */
+/*   Created: 2022/05/23 10:17:34 by pngamcha          #+#    #+#             */
+/*   Updated: 2022/05/24 11:54:32 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	shell_sighandler(int sig)
+void	print_env(char **cmd)
 {
-	if (sig == SIGINT)
-		rl_on_new_line();
-	if (sig == SIGQUIT)
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+		i++;
+	if (i != 1)
+	{
+		ft_putstr_fd(cmd[0], STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putstr_fd(cmd[1], STDERR_FILENO);
+		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
+		g_mini.exit_status = 127;
 		return ;
+	}
+	else
+		while (g_mini.env[i])
+			printf("%s\n", g_mini.env[i++]);
 }
-
-void	shell_signal(void)
-{
-	struct sigaction	sa;
-
-	sa.sa_handler = shell_sighandler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_SIGINFO;
-	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGQUIT, &sa, NULL);
-}
-
-// bash Ctrl C -> Sigint -> prompt a new line
-// Ctrl D -> exit
-// Ctrl \ -> Do nothing
