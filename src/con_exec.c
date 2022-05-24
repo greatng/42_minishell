@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 23:58:54 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 11:53:58 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:08:04 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	convert_arg(int argc, char **argv, char **env)
 	i = 0;
 	while (env[size])
 		size++;
-	g_mini.env = ft_calloc(sizeof(char *), size + 1);
+	g_mini.env = ft_calloc(size + 1, sizeof(char *));
 	g_mini.env[size] = 0;
 	while (i < size)
 	{
 		len = ft_strlen(env[i]) + 1;
-		g_mini.env[i] = ft_calloc(sizeof(char), len);
+		g_mini.env[i] = ft_calloc(len, sizeof(char));
 		ft_strlcpy(g_mini.env[i], env[i], len);
 		i++;
 	}
@@ -79,6 +79,10 @@ void	shell_execute(char ***cmd)
 			shell_clear();
 		else if (!ft_strncmp("env", cmd[i][0], 4))
 			print_env(cmd[i]);
+		else if (!ft_strncmp("export", cmd[i][0], 7))
+			shell_export(cmd[i]);
+		else if (!ft_strncmp("unset", cmd[i][0], 6))
+			shell_unset(cmd[i]);
 		i++;
 	}
 }
