@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 12:09:42 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:33:42 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,8 @@ void	convert_var(char ***cmd);
 void	shell_execute(char ***cmd);
 
 char	*rl_gets(char *line_read);
+
+//free every malloc var at the end of every loop
+void	end_of_loop(char *line);
 
 #endif

@@ -2,16 +2,18 @@ NAME			=	minishell
 
 CC			=	gcc
 CFLAGS			=	-Wall -Wextra -Wextra
+LEAKS			=	-fsanitize=address
 READFLAG		=	-lreadline
 
 HEADER_DIR		=	include
-HEADER			=	minishell builtin
+HEADER			=	minishell builtin phrase quote
 HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
 SRC			=	main builtin_1 builtin_2 additional_fn signal \
 					1_phrase_utils 2_lexer 3_parser 4_free_phrase \
-					rl_get con_exec 1_quote_utils 2_translate_vars
+					rl_get con_exec 1_quote_utils 2_translate_vars \
+					end_of_loop builtin_utils
 SRCS 			=	$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
 OBJ_DIR			=	obj
@@ -26,13 +28,13 @@ BLUE = \033[38;5;4m
 SALMON = \033[38;5;174m
 HOTPINK = \033[38;5;168m
 
-all:				$(NAME)
+all:				libft $(NAME)
 
-$(NAME):			$(OBJ) libft
+$(NAME):			$(OBJ)
 					@echo "$(GREEN)Compiling:$(NORMAL)"
-					$(CC) $(CFLAGS) $(READFLAG) $(OBJ) $(LIBFT) -o $@
+					$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(OBJ) $(LIBFT) -o $@
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c	$(HEADERS)
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(HEADERS) 
 					@mkdir -p $(OBJ_DIR)
 					@$(CC) $(CFLAGS) -c $< -o $@ 
 

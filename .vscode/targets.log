@@ -8,19 +8,20 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue May 24 11:42:59 2022
+# Make data base, printed on Tue May 24 17:56:46 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
+ 
 # automatic
  
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 18)
+# makefile (from `Makefile', line 20)
 OBJ = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC)))
-# makefile (from `Makefile', line 12)
-SRC = main builtin_1 builtin_2 additional_fn signal 1_phrase_utils 2_lexer 3_parser 4_free_phrase rl_get con_exec 1_quote_utils 2_translate_vars
+# makefile (from `Makefile', line 13)
+SRC = main builtin_1 builtin_2 additional_fn signal 1_phrase_utils 2_lexer 3_parser 4_free_phrase rl_get con_exec 1_quote_utils 2_translate_vars end_of_loop builtin_utils
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -39,14 +40,16 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 _ = /usr/bin/make
 # makefile (from `Makefile', line 4)
 CFLAGS = -Wall -Wextra -Wextra
-# makefile (from `Makefile', line 25)
+# makefile (from `Makefile', line 27)
 BLUE = \033[38;5;4m
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# makefile (from `Makefile', line 17)
+# makefile (from `Makefile', line 19)
 OBJ_DIR = obj
 # environment
 VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile', line 5)
+LEAKS = -fsanitize=address
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
@@ -55,7 +58,7 @@ INFOPATH = /opt/homebrew/share/info:/opt/local/share/info:
 VSCODE_IPC_HOOK_EXTHOST = /var/folders/ld/sh1sblf11kd9n_lxmzlt97lm0000gn/T/vscode-ipc-0529d73f-2f47-489a-829a-aa320ea07f57.sock
 # environment
 VSCODE_CWD = /
-# makefile (from `Makefile', line 26)
+# makefile (from `Makefile', line 28)
 SALMON = \033[38;5;174m
 # environment
 PATH = /Users/greatng/bin:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:/usr/local/bin:/Users/greatng/Library/Python/3.8/bin:/Applications/VMware Fusion Tech Preview.app/Contents/Public:/usr/local/go/bin:/opt/X11/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/greatng/.cache/zsh4humans/v5/fzf/bin
@@ -79,7 +82,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.FoSam4JetX/Listeners
 %F = $(notdir $%)
 # environment
 DISPLAY = /private/tmp/com.apple.launchd.EgZvc77oM3/org.xquartz:0
-# makefile (from `Makefile', line 27)
+# makefile (from `Makefile', line 29)
 HOTPINK = \033[38;5;168m
 # environment
 VSCODE_PIPE_LOGGING = true
@@ -89,7 +92,7 @@ PWD = /Users/greatng/42Bangkok/42cursus/minishell
 HOMEBREW_CELLAR = /opt/homebrew/Cellar
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# makefile (from `Makefile', line 22)
+# makefile (from `Makefile', line 24)
 GREEN = \033[38;5;2m
 # environment
 MANPATH = /opt/homebrew/share/man:/opt/local/share/man:/usr/share/man:/usr/local/share/man:/opt/X11/share/man:/Users/greatng/.cache/zsh4humans/v5/fzf/man:
@@ -109,7 +112,7 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 HEADERS = $(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# makefile (from `Makefile', line 23)
+# makefile (from `Makefile', line 25)
 NORMAL = \033[38;5;255m
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
@@ -119,11 +122,12 @@ XPC_FLAGS = 0x0
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `Makefile', line 15)
+# makefile (from `Makefile', line 17)
 SRCS = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 20)
+ 
+# makefile (from `Makefile', line 22)
 LIBFT = libft/libft.a
 # makefile (from `Makefile', line 3)
 CC = gcc
@@ -152,7 +156,7 @@ TMPDIR = /var/folders/ld/sh1sblf11kd9n_lxmzlt97lm0000gn/T/
 *F = $(notdir $*)
 # environment
 VSCODE_IPC_HOOK = /Users/greatng/Library/Application Support/Code/1.67.2-main.sock
-# makefile (from `Makefile', line 24)
+# makefile (from `Makefile', line 26)
 RED = \033[38;5;1m
 # makefile
 MAKEFLAGS = Rrqp
@@ -186,8 +190,8 @@ TREE_COLORS = fi=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=01;34:st=34:tw=34:
 PAGER = less
 # environment
 LC_ALL = C
-# makefile (from `Makefile', line 8)
-HEADER = minishell builtin
+# makefile (from `Makefile', line 9)
+HEADER = minishell builtin phrase quote
 # automatic
 ^F = $(notdir $^)
 # default
@@ -203,7 +207,7 @@ TERM = xterm-256color
 # environment
 VSCODE_PID = 2599
 # variable set hash-table stats:
-# Load=94/1024=9%, Rehash=0, Collisions=6/132=5%
+# Load=95/1024=9%, Rehash=0, Collisions=6/130=5%
 
 # Pattern-specific Variable Values
 
@@ -211,16 +215,14 @@ VSCODE_PID = 2599
 
 # Directories
 
-# include (device 16777232, inode 10894070): 6 files, no impossibilities so far.
-# . (device 16777232, inode 10783218): 11 files, no impossibilities.
-# src (device 16777232, inode 10894030): 12 files, no impossibilities so far.
+# . (device 16777232, inode 10783218): 10 files, no impossibilities.
 
-# 29 files, no impossibilities in 3 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-obj/%.o: src/%.c	include/minishell.h include/builtin.h
-#  commands to execute (from `Makefile', line 36):
+obj/%.o: src/%.c include/minishell.h include/builtin.h include/phrase.h include/quote.h
+#  commands to execute (from `Makefile', line 38):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ 
 	
@@ -229,7 +231,7 @@ obj/%.o: src/%.c	include/minishell.h include/builtin.h
 
 # Files
 
-all: minishell
+all: libft minishell
 #  Phony target (prerequisite of .PHONY).
 #  Command-line target.
 #  Implicit rule search has not been done.
@@ -237,16 +239,7 @@ all: minishell
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-
-# Not a target:
-include/minishell.h:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-24 11:29:49
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
 
 .PHONY: all clean fclean re libft
 #  Implicit rule search has not been done.
@@ -259,24 +252,16 @@ obj/builtin_1.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-include/builtin.h:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-22 14:02:56
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
 pig:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 55):
+#  commands to execute (from `Makefile', line 57):
 	@echo "$(SALMON)                         .....            :!????7!^:\n\
 	.^!J5PGGBGG5::~!77?77~:G&&&&&&&&#GY!.\n\
 	.?G#&&&&&&&&&B^G&&&&&&&B^G&&&&&&&&&&&#^\n\
 	.P&&&&&&&&&&#!?&&&&&&&&&J~B&&&&&&&&#Y^\n\
+ 
 	.JB&&&&&&&G!J&&&&&&&&&&&Y!YB###B5J??^\n\
 	~??5GGG5?7P&&&&&&&&&&&&&#5JJJJJ5G&&#5^\n\
 	.J&&BPYYY5G&&&&&&&&&&&&&&&&&&&#&&&&&&&&#~\n\
@@ -306,40 +291,37 @@ pig:
 libft:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
 #  File does not exist.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 40):
-	@make -C ./libft/		
-	
-
-obj/main.o: src/main.c include/minishell.h include/builtin.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main'
-#  Last modified 2022-05-24 11:39:06
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
-# @ := obj/main.o
+# @ := libft
 # automatic
 # % := 
 # automatic
-# * := main
+# * := 
 # automatic
-# + := src/main.c include/minishell.h include/builtin.h
+# + := 
 # automatic
 # | := 
 # automatic
-# < := src/main.c
+# < := 
 # automatic
-# ^ := src/main.c include/minishell.h include/builtin.h
+# ^ := 
 # automatic
-# ? := src/main.c
+# ? := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
-#  commands to execute (from `Makefile', line 36):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ 
+# Load=8/32=25%, Rehash=0, Collisions=1/10=10%
+#  commands to execute (from `Makefile', line 42):
+	@make -C ./libft/		
 	
+
+# Not a target:
+obj/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -350,7 +332,7 @@ obj/main.o: src/main.c include/minishell.h include/builtin.h
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-24 11:42:45
+#  Last modified 2022-05-24 17:56:39
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -386,16 +368,13 @@ obj/4_free_phrase.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-minishell: obj/main.o obj/builtin_1.o obj/builtin_2.o obj/additional_fn.o obj/signal.o obj/1_phrase_utils.o obj/2_lexer.o obj/3_parser.o obj/4_free_phrase.o obj/rl_get.o obj/con_exec.o obj/1_quote_utils.o obj/2_translate_vars.o libft
+minishell: obj/main.o obj/builtin_1.o obj/builtin_2.o obj/additional_fn.o obj/signal.o obj/1_phrase_utils.o obj/2_lexer.o obj/3_parser.o obj/4_free_phrase.o obj/rl_get.o obj/con_exec.o obj/1_quote_utils.o obj/2_translate_vars.o obj/end_of_loop.o obj/builtin_utils.o
 #  Implicit rule search has not been done.
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  commands to execute (from `Makefile', line 32):
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 34):
 	@echo "$(GREEN)Compiling:$(NORMAL)"
-	$(CC) $(CFLAGS) $(READFLAG) $(OBJ) $(LIBFT) -o $@
+	$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(OBJ) $(LIBFT) -o $@
 	
 
 fclean: clean
@@ -403,7 +382,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 47):
+#  commands to execute (from `Makefile', line 49):
 	@$(RM) -rf $(NAME)
 	@make fclean -C ./libft/	
 	
@@ -427,13 +406,10 @@ obj/additional_fn.o:
 #  File has not been updated.
 
 # Not a target:
-src/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-24 11:42:59
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+obj/2_translate_vars.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 obj/2_translate_vars.o:
@@ -442,9 +418,10 @@ obj/2_translate_vars.o:
 #  File has not been updated.
 
 # Not a target:
-.DEFAULT:
+obj/builtin_utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 re: fclean all
@@ -460,12 +437,18 @@ obj/con_exec.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+obj/con_exec.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 44):
+#  commands to execute (from `Makefile', line 46):
 	@$(RM) -rf $(OBJ) $(OBJ_B) $(OBJ_DIR)
 	@make clean -C ./libft/	
 	
@@ -476,8 +459,14 @@ obj/signal.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+obj/end_of_loop.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=27/1024=3%, Rehash=0, Collisions=0/70=0%
+# Load=26/1024=3%, Rehash=0, Collisions=0/65=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -489,6 +478,6 @@ obj/signal.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue May 24 11:42:59 2022
+# Finished Make data base on Tue May 24 17:56:46 2022
 
  
