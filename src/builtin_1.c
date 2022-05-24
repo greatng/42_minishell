@@ -6,17 +6,31 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 11:51:37 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:29:52 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/builtin.h"
 
-void	change_dir(char *dir)
+void	change_dir(char *cmd)
 {
+	size_t	i;
+	char	*dir;
+
+	i = 0;
+	dir = cmd;
+
 	if (!dir)
-		chdir(getenv("HOME"));
-	else if (chdir(dir))
+	{
+		while (g_mini.env[i])
+		{
+			if (!ft_strncmp("HOME=", g_mini.env[i], 5))
+				break ;
+			i++;
+		}
+		dir = ft_strchr(g_mini.env[i], '/');
+	}
+	if (chdir(dir))
 		perror("");
 	g_mini.exit_status = errno;
 }
@@ -26,6 +40,7 @@ void	present_wd(void)
 	char	buf[1024];
 
 	printf("%s\n", getcwd(buf, 1023));
+	g_mini.exit_status = 0;
 }
 
 static	void	print_echo(char **echo, size_t i, size_t size, int newline)
@@ -64,6 +79,7 @@ void	shell_echo(char **echo)
 		}
 		print_echo(echo, i, size, newline);
 	}
+	g_mini.exit_status = 0;
 }
 
 void	shell_exit(void)
