@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/greatng/42Bangkok/42cursus/minishell'
 make -C ./libft/		
 mkdir -p obj
@@ -15,6 +15,7 @@ mkdir -p obj
 gcc -Wall -Wextra -Wextra -c src/1_phrase_utils.c -o obj/1_phrase_utils.o 
 mkdir -p obj
 gcc -Wall -Wextra -Wextra -c src/2_lexer.c -o obj/2_lexer.o 
+ 
 mkdir -p obj
 gcc -Wall -Wextra -Wextra -c src/3_parser.c -o obj/3_parser.o 
 mkdir -p obj

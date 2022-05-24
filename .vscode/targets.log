@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue May 24 17:56:46 2022
+# Make data base, printed on Tue May 24 20:40:44 2022
 
 # Variables
 
@@ -16,7 +16,6 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
  
 # automatic
- 
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 20)
 OBJ = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC)))
@@ -55,7 +54,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:/opt/local/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/ld/sh1sblf11kd9n_lxmzlt97lm0000gn/T/vscode-ipc-0529d73f-2f47-489a-829a-aa320ea07f57.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/ld/sh1sblf11kd9n_lxmzlt97lm0000gn/T/vscode-ipc-e11cf28a-584a-4a4e-b0a9-f9ba00b87841.sock
 # environment
 VSCODE_CWD = /
 # makefile (from `Makefile', line 28)
@@ -64,7 +63,7 @@ SALMON = \033[38;5;174m
 PATH = /Users/greatng/bin:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:/usr/local/bin:/Users/greatng/Library/Python/3.8/bin:/Applications/VMware Fusion Tech Preview.app/Contents/Public:/usr/local/go/bin:/opt/X11/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/greatng/.cache/zsh4humans/v5/fzf/bin
 # environment
 LSCOLORS = ExGxDxDxCxDxDxFxFxexEx
-# makefile (from `Makefile', line 5)
+# makefile (from `Makefile', line 6)
 READFLAG = -lreadline
 # environment
 VSCODE_LOG_STACK = false
@@ -108,7 +107,7 @@ VSCODE_CODE_CACHE_PATH = /Users/greatng/Library/Application Support/Code/CachedD
 LOGNAME = greatng
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# makefile (from `Makefile', line 9)
+# makefile (from `Makefile', line 10)
 HEADERS = $(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
@@ -126,8 +125,8 @@ MAKECMDGOALS := all
 SRCS = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 # environment
 SHLVL = 1
- 
 # makefile (from `Makefile', line 22)
+ 
 LIBFT = libft/libft.a
 # makefile (from `Makefile', line 3)
 CC = gcc
@@ -135,7 +134,6 @@ CC = gcc
 MAKE_VERSION := 3.81
 # environment
 USER = greatng
- 
 # makefile
 .DEFAULT_GOAL := all
 # makefile (from `Makefile', line 1)
@@ -146,7 +144,7 @@ LESS = -iRFXMx4
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
-# makefile (from `Makefile', line 7)
+# makefile (from `Makefile', line 8)
 HEADER_DIR = include
 # default
 .VARIABLES := 
@@ -180,7 +178,7 @@ __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
-# makefile (from `Makefile', line 11)
+# makefile (from `Makefile', line 12)
 SRC_DIR = src
 # automatic
 <F = $(notdir $<)
@@ -261,7 +259,6 @@ pig:
 	.^!J5PGGBGG5::~!77?77~:G&&&&&&&&#GY!.\n\
 	.?G#&&&&&&&&&B^G&&&&&&&B^G&&&&&&&&&&&#^\n\
 	.P&&&&&&&&&&#!?&&&&&&&&&J~B&&&&&&&&#Y^\n\
- 
 	.JB&&&&&&&G!J&&&&&&&&&&&Y!YB###B5J??^\n\
 	~??5GGG5?7P&&&&&&&&&&&&&#5JJJJJ5G&&#5^\n\
 	.J&&BPYYY5G&&&&&&&&&&&&&&&&&&&#&&&&&&&&#~\n\
@@ -272,7 +269,6 @@ pig:
 	.5&&&&&&&&&&&&&$(HOTPINK)#BPPPP5PP55PPPPB$(SALMON)&&&&&&&&&&&&&&&&!\n\
 	7&&&&&&&&&&&&&&$(HOTPINK)#PPPP?^5P!~PPPPG&$(SALMON)&&&#######&&&&&5.\n\
 	.Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#BBGBGBB##&&&B:\n\
- 
 	J&&&##BBBBBB##&&&&$(HOTPINK)#BBBBBB#PB$(SALMON)&&&&&##BGGPPGBB#&&&P.\n\
 	:B&&#BBGPPGGB##&&&&#JYPPPJ?B&&&&&&#BBGGGBB##&&#!\n\
 	^G&&#BBGGGBB#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
@@ -286,6 +282,7 @@ pig:
 	^#&&&&&&&&&&&&&&&&&&&&&&&&&&&&G.\n\
 	^~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n\
 	$(NORMAL)I'm the piglosopher !"
+ 
 	
 
 libft:
@@ -332,7 +329,7 @@ obj/main.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-24 17:56:39
+#  Last modified 2022-05-24 18:14:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -412,7 +409,7 @@ obj/2_translate_vars.o:
 #  File has not been updated.
 
 # Not a target:
-obj/2_translate_vars.o:
+.DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -421,20 +418,12 @@ obj/2_translate_vars.o:
 obj/builtin_utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
- 
-#  File has not been updated.
-
-# Not a target:
-obj/con_exec.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
@@ -478,6 +467,6 @@ obj/end_of_loop.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue May 24 17:56:46 2022
+# Finished Make data base on Tue May 24 20:40:44 2022
 
  

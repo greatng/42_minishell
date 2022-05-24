@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 18:00:21 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/24 21:15:35 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	change_dir(char *cmd)
 
 	i = 0;
 	dir = cmd;
+	update_pwd(1);
 	if (!dir)
 	{
 		while (g_mini.env[i])
@@ -31,6 +32,11 @@ void	change_dir(char *cmd)
 	}
 	if (chdir(dir))
 		perror("");
+	else
+	{
+		update_pwd(0);
+		update_pwd(1);
+	}
 	g_mini.exit_status = errno;
 }
 
