@@ -4,15 +4,15 @@ See notion here [Click](https://painted-march-a4f.notion.site/42_minishell-e3af6
 
 ***built in fn***
 
-cd -> done (need to update PWD variable in env)
+cd -> done
 
 pwd -> done
 
 echo -n -> done
 
-exit -> done (very nasty one)
+exit -> done
 
-ls -> done (not require but for easier usage/ no option)
+ls -> done
 
 clear -> done
 
@@ -24,4 +24,10 @@ export -> done
 
 just a quick coding not sure if it really work well
 
-**waitlist**
+**Note**
+
+Makefile is only test on Darwin (MacOS), please make sure that it can run on linux, etc.
+
+**What left**
+
+Redirectiom
