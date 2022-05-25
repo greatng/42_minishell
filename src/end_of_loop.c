@@ -6,33 +6,33 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:39:00 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 16:34:06 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:17:43 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	end_of_loop(char *line)
+void	end_of_loop(char *line, char ***cmd)
 {
-	// size_t	i;
-	// size_t	j;
+	size_t	i;
+	size_t	j;
 
 	free(line);
 	line = NULL;
-	// i = 0;
-	// while (cmd[i])
-	// {
-	// 	j = 0;
-	// 	while (cmd[i][j])
-	// 	{
-	// 		free(cmd[i][j]);
-	// 		cmd[i][j] = NULL;
-	// 		j++;
-	// 	}
-	// 	free(cmd[i]);
-	// 	cmd[i] = NULL;
-	// 	i++;
-	// }
-	// free (cmd);
-	// cmd = NULL;
+	i = 0;
+	while (cmd[i])
+	{
+		j = 0;
+		while (cmd[i][j])
+		{
+			free(cmd[i][j]);
+			cmd[i][j] = NULL;
+			j++;
+		}
+		free(cmd[i]);
+		cmd[i] = NULL;
+		i++;
+	}
+	free (cmd);
+	cmd = NULL;
 }

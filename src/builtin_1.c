@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 21:15:35 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:18:05 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,13 @@ static	void	print_echo(char **echo, size_t i, size_t size, int newline)
 {
 	while (echo[i] && i < size - 1)
 	{
-		ft_putstr_fd(echo[i], STDOUT_FILENO);
+		ft_putstr_fd(echo[i++], STDOUT_FILENO);
 		ft_putchar_fd(' ', STDOUT_FILENO);
-		free(echo[i++]);
 	}
 	if (!newline)
 		ft_putendl_fd(echo[i], STDOUT_FILENO);
 	else
 		ft_putstr_fd(echo[i], STDOUT_FILENO);
-	free(echo[i]);
-	free(echo);
 }
 
 void	shell_echo(char **echo)
