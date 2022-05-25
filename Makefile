@@ -1,9 +1,16 @@
 NAME			=	minishell
+UNAME 			= 	$(shell uname -s)
 
 CC			=	gcc
 CFLAGS			=	-Wall -Wextra -Wextra
 LEAKS			=	-fsanitize=address
 READFLAG		=	-lreadline
+
+ifeq ($(UNAME), Darwin)
+	LDFLAGS			=	-L${HOMEBREW_PREFIX}/opt/readline/lib
+	CPPFLAGS		=	-I${HOMEBREW_PREFIX}/opt/readline/include
+endif
+
 
 HEADER_DIR		=	include
 HEADER			=	minishell builtin phrase quote
@@ -32,11 +39,11 @@ all:				libft $(NAME)
 
 $(NAME):			$(OBJ)
 					@echo "$(GREEN)Compiling:$(NORMAL)"
-					$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(OBJ) $(LIBFT) -o $@
+					$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(HEADERS) 
 					@mkdir -p $(OBJ_DIR)
-					@$(CC) $(CFLAGS) -c $< -o $@ 
+					@$(CC) $(CPPFLAGS) $(CFLAGS)  -c $< -o $@ 
 
 libft:
 					@make -C ./libft/		

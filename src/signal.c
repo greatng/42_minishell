@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:49:20 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 11:54:14 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/26 01:20:12 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 static void	shell_sighandler(int sig)
 {
 	if (sig == SIGINT)
+	{
+		g_mini.exit_status = 130;
+		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
+		rl_redisplay();
+	}
 	if (sig == SIGQUIT)
-		return ;
+	{
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
 
 void	shell_signal(void)
@@ -26,7 +34,7 @@ void	shell_signal(void)
 
 	sa.sa_handler = shell_sighandler;
 	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_SIGINFO;
+	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
 	sigaction(SIGQUIT, &sa, NULL);
 }
