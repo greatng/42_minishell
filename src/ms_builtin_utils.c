@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:56:19 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 21:18:50 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:11:41 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	update_pwd(int mode)
 	else
 		cwd = ft_strjoin("OLD", g_mini.env[i]);
 	if (!check_var_dup(cwd))
-		add_env(cwd);
-	free(cwd);
+		if (!cwd)
+			add_env(cwd);
+	if (!cwd)
+		free(cwd);
 }

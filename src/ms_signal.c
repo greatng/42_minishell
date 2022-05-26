@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:49:20 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/26 01:30:55 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:07:05 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ static void	shell_sighandler(int sig)
 	if (sig == SIGINT)
 	{
 		g_mini.exit_status = 130;
-		write(STDOUT_FILENO, "\n", 1);
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_on_new_line();
-		rl_redisplay();
 	}
 	if (sig == SIGQUIT)
 	{
