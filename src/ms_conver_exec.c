@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   con_exec.c                                         :+:      :+:    :+:   */
+/*   ms_conver_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 23:58:54 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 17:08:04 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/28 02:18:51 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	shell_execute(char ***cmd)
 			shell_export(cmd[i]);
 		else if (!ft_strncmp("unset", cmd[i][0], 6))
 			shell_unset(cmd[i]);
+		else if (!ft_strncmp("stty", cmd[i][0], 5))
+			enable_echo();
 		i++;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_1.c                                        :+:      :+:    :+:   */
+/*   ms_builtin_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/26 17:03:55 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/28 03:03:49 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,11 @@ void	shell_exit(void)
 	int	i;
 
 	i = 0;
+	enable_echo();
 	while (g_mini.env[i])
 		free(g_mini.env[i++]);
 	free(g_mini.env);
-	printf(RED"Exiting shell...\n"RES);
+	rl_clear_history();
+	ft_putendl_fd(RED"Exiting shell..."RES, STDERR_FILENO);;
 	exit(EXIT_SUCCESS);
 }
