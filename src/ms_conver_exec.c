@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 23:58:54 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/28 02:18:51 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/28 12:53:26 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,31 @@ void	convert_arg(int argc, char **argv, char **env)
 	}
 }
 
+static int	run_builtin(char **cmd)
+{
+	if (!ft_strncmp("cd", cmd[0], 3))
+		change_dir(cmd[1]);
+	else if (!ft_strncmp("pwd", cmd[0], 4))
+		present_wd();
+	else if (!ft_strncmp("echo", cmd[0], 5))
+		shell_echo(cmd);
+	else if (!ft_strncmp("exit", cmd[0], 5))
+		shell_exit();
+	else if (!ft_strncmp("ls", cmd[0], 3))
+		shell_ls();
+	else if (!ft_strncmp("clear", cmd[0], 6))
+		shell_clear();
+	else if (!ft_strncmp("env", cmd[0], 4))
+		print_env(cmd);
+	else if (!ft_strncmp("export", cmd[0], 7))
+		shell_export(cmd);
+	else if (!ft_strncmp("unset", cmd[0], 6))
+		shell_unset(cmd);
+	else
+		return (0);
+	return (1);
+}	
+
 void	shell_execute(char ***cmd)
 {
 	size_t	i;
@@ -65,26 +90,7 @@ void	shell_execute(char ***cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		if (!ft_strncmp("cd", cmd[i][0], 3))
-			change_dir(cmd[i][1]);
-		else if (!ft_strncmp("pwd", cmd[i][0], 4))
-			present_wd();
-		else if (!ft_strncmp("echo", cmd[i][0], 5))
-			shell_echo(cmd[i]);
-		else if (!ft_strncmp("exit", cmd[i][0], 5))
-			shell_exit();
-		else if (!ft_strncmp("ls", cmd[i][0], 3))
-			shell_ls();
-		else if (!ft_strncmp("clear", cmd[i][0], 6))
-			shell_clear();
-		else if (!ft_strncmp("env", cmd[i][0], 4))
-			print_env(cmd[i]);
-		else if (!ft_strncmp("export", cmd[i][0], 7))
-			shell_export(cmd[i]);
-		else if (!ft_strncmp("unset", cmd[i][0], 6))
-			shell_unset(cmd[i]);
-		else if (!ft_strncmp("stty", cmd[i][0], 5))
-			enable_echo();
+		run_builtin(cmd[i]);
 		i++;
 	}
 }

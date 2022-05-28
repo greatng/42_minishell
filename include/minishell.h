@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/25 17:11:39 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/28 12:54:11 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <errno.h>
+# include <sys/ioctl.h>
+# include <sys/wait.h>
 
 # include "../libft/libft.h"
 # include "builtin.h"
@@ -44,6 +46,8 @@ typedef struct s_mini
 
 t_mini	g_mini;
 
+void	shell_init(int argc, char **argv, char **env);
+void	enable_echo(void);
 //not completed yet
 void	shell_signal(void);
 //env converter from stack to heap memory, ready to rock
