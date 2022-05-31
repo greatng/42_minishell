@@ -67,3 +67,14 @@ int	is_pipe_error(char *line)
 		return (2);
 	return (0);
 }
+
+int	is_syntax(char c)
+{
+	if (c == ' ')
+		return (1);
+	else if (c == '<' || c == '>')
+		return (2);
+	else if (c == '|')
+		return (3);
+	return (0);
+}
