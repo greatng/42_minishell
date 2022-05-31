@@ -18,6 +18,7 @@
 /* 1_phrase_utils.c*/
 int		able_to_phrase(char *str);
 int		is_pipe_error(char *line);
+int     is_syntax(char c);
 
 /* 2_lexer.c*/
 char	**lexer(char *line);
