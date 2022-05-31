@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/28 03:03:49 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 00:38:23 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ void	shell_exit(void)
 		free(g_mini.env[i++]);
 	free(g_mini.env);
 	rl_clear_history();
-	ft_putendl_fd(RED"Exiting shell..."RES, STDERR_FILENO);;
-	exit(EXIT_SUCCESS);
+	ft_putendl_fd(RED"Exiting shell..."RES, STDERR_FILENO);
+	exit(g_mini.exit_status);
 }

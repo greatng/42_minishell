@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/28 12:54:11 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 00:26:05 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 
 # include "../libft/libft.h"
 # include "builtin.h"
@@ -46,6 +47,14 @@ typedef struct s_mini
 
 t_mini	g_mini;
 
+typedef struct s_cmd
+{
+	char	**cmd;
+	int	infile;
+	int	outfile;
+	size_t	size;
+}	t_cmd;
+
 void	shell_init(int argc, char **argv, char **env);
 void	enable_echo(void);
 //not completed yet
@@ -53,7 +62,8 @@ void	shell_signal(void);
 //env converter from stack to heap memory, ready to rock
 void	convert_arg(int argc, char **argv, char **env);
 //translate any $VAR
-void	convert_var(char ***cmd);
+void	struct_fd(t_cmd *cmd, char ***cmd_arr);
+t_cmd	*create_struct(char ***cmd);
 //execute cmd
 void	shell_execute(char ***cmd);
 

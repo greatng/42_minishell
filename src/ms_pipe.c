@@ -1,62 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_conver_exec.c                                   :+:      :+:    :+:   */
+/*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/22 23:58:54 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/28 12:53:26 by pngamcha         ###   ########.fr       */
+/*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
+/*   Updated: 2022/06/01 00:33:37 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-//Convert any $VAR to real data
-void	convert_var(char ***cmd)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (cmd[i])
-	{
-		j = 0;
-		while (cmd[i][j])
-		{
-			cmd[i][j] = translate_cmd(cmd[i][j]);
-			j++;
-		}
-		i++;
-	}
-}
-//Convert env to g_mini.env
-
-void	convert_arg(int argc, char **argv, char **env)
-{
-	int	size;
-	int	len;
-	int	i;
-
-	if (argc != 1 || !argv[0])
-	{
-		printf("Please run by using ./minishell\n");
-		exit(0);
-	}
-	size = 0;
-	i = 0;
-	while (env[size])
-		size++;
-	g_mini.env = ft_calloc(size + 1, sizeof(char *));
-	g_mini.env[size] = 0;
-	while (i < size)
-	{
-		len = ft_strlen(env[i]) + 1;
-		g_mini.env[i] = ft_calloc(len, sizeof(char));
-		ft_strlcpy(g_mini.env[i], env[i], len);
-		i++;
-	}
-}
 
 static int	run_builtin(char **cmd)
 {

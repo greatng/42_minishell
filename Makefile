@@ -18,9 +18,9 @@ HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
 SRC			=	main ms_additional_fn ms_builtin_1 ms_builtin_2 ms_builtin_utils \
-					ms_conver_exec ms_end ms_free_phrase ms_lexer ms_parser \
+					ms_end ms_free_phrase ms_lexer ms_parser ms_pipe \
 					ms_phrase_utils ms_quote_utils ms_rl_get ms_signal ms_translate_vars \
-					ms_init
+					ms_init ms_conver_1 ms_conver_2
 SRCS 			=	$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
 OBJ_DIR			=	obj
@@ -46,7 +46,7 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(HEADERS)
 					@$(CC) $(CPPFLAGS) $(CFLAGS)  -c $< -o $@ 
 
 libft:
-					@make -C ./libft/		
+					@make -C ./libft/	
 					
 
 clean:
