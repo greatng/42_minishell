@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:24:41 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 00:45:39 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:56:48 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 {
 	if (!ft_strncmp(cmd_arg[j], "<<", 3))
 	{
-		// if (cmd_arg[j + 1])
-		// 	here_doc();
+		if (cmd_arg[j + 1])
+			cmd->infile = here_doc(cmd_arg[j + 1]);
 		return ;
 	}
 	else if (!ft_strncmp(cmd_arg[j], "<", 2))

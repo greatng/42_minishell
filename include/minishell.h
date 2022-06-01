@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 00:26:05 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:11:10 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define CYAN "\033[0;36m"
 # define RES "\033[0m"
 
+# define PIPERD 0
+# define PIPEWR 1
+
 typedef struct s_mini
 {
 	char	**env;
@@ -55,13 +58,14 @@ typedef struct s_cmd
 	size_t	size;
 }	t_cmd;
 
+//Init part
 void	shell_init(int argc, char **argv, char **env);
 void	enable_echo(void);
-//not completed yet
 void	shell_signal(void);
-//env converter from stack to heap memory, ready to rock
 void	convert_arg(int argc, char **argv, char **env);
-//translate any $VAR
+
+//translate any $VAR, Convert char *** to struct
+int	here_doc(char *delimit);
 void	struct_fd(t_cmd *cmd, char ***cmd_arr);
 t_cmd	*create_struct(char ***cmd);
 //execute cmd
