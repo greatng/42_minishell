@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 10:32:08 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:24:22 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	here_doc(char *delimit)
 {
 	char	*buf;
 	char	*res;
-	int	tmp_pipe[2];
+	int		tmp_pipe[2];
 
 	res = NULL;
 	pipe(tmp_pipe);

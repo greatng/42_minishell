@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 10:11:10 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:19:20 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void	convert_arg(int argc, char **argv, char **env);
 int	here_doc(char *delimit);
 void	struct_fd(t_cmd *cmd, char ***cmd_arr);
 t_cmd	*create_struct(char ***cmd);
+int	check_redirection(char *redirect);
 //execute cmd
 void	shell_execute(char ***cmd);
+int	run_builtin(char **cmd);
 
 char	*rl_gets(char *line_read);
 

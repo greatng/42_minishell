@@ -6,53 +6,66 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 23:58:54 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 00:37:44 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:22:01 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+static char	*dup_trans(char *cmd)
+{
+	char	*tmp;
+
+	tmp = ft_strdup(cmd);
+	tmp = translate_cmd(tmp);
+	return (tmp);
+}
+
 static size_t	count_cmd(char **cmd_arr)
 {
 	size_t	i;
+	size_t	count;
 
 	i = 0;
+	count = 0;
 	while (cmd_arr[i])
 	{
-		if (!ft_strncmp(cmd_arr[i], ">>", 3) || \
-			!ft_strncmp(cmd_arr[i], "<<", 3) || \
-			!ft_strncmp(cmd_arr[i], ">", 2) || \
-			!ft_strncmp(cmd_arr[i], "<", 2))
-			break ;
+		if (check_redirection(cmd_arr[i]))
+		{
+			if (cmd_arr[++i])
+				i++;
+			continue ;
+		}
+		else
+			count++;
 		i++;
 	}
-	return (i);
+	return (count + 1);
 }
 
 static void	cmd_to_struct(t_cmd *cmd, char ***cmd_arr)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
+	int	idx;
 
-	i = 0;
-	while (cmd_arr[i])
+	i = -1;
+	while (cmd_arr[++i])
 	{
-		j = 0;
-		while (cmd_arr[i][j])
+		j = -1;
+		idx = 0;
+		while (cmd_arr[i][++j])
 		{
-			if (!ft_strncmp(cmd_arr[i][j], ">>", 3) || \
-				!ft_strncmp(cmd_arr[i][j], "<<", 3) || \
-				!ft_strncmp(cmd_arr[i][j], ">", 2) || \
-				!ft_strncmp(cmd_arr[i][j], "<", 2))
-				break ;
-			else
+			if (check_redirection(cmd_arr[i][j]))
 			{
-				cmd[i].cmd[j] = ft_strdup(cmd_arr[i][j]);
-				cmd[i].cmd[j] = translate_cmd(cmd[i].cmd[j]);
+				if (cmd_arr[i][++j])
+					idx += 2;
+				else
+					break ;
 			}
-			j++;
+			else
+				cmd[i].cmd[j - idx] = dup_trans(cmd_arr[i][j]);
 		}
-		i++;
 	}
 	struct_fd(cmd, cmd_arr);
 }

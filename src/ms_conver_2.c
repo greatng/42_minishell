@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:24:41 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 09:56:48 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:22:26 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 {
+	if (cmd_arg[j + 1])
+		cmd_arg[j + 1] = translate_cmd(cmd_arg[j + 1]);
 	if (!ft_strncmp(cmd_arg[j], "<<", 3))
 	{
 		if (cmd_arg[j + 1])
@@ -36,6 +38,8 @@ static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 
 static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 {
+	if (cmd_arg[j + 1])
+		cmd_arg[j + 1] = translate_cmd(cmd_arg[j + 1]);
 	if (!ft_strncmp(cmd_arg[j], ">>", 3))
 	{
 		if (cmd_arg[j + 1])
@@ -91,4 +95,14 @@ void	struct_fd(t_cmd *cmd, char ***cmd_arr)
 		i++;
 	}
 	clean_cmd(cmd_arr);
+}
+
+int	check_redirection(char *redirect)
+{
+	if (!ft_strncmp(redirect, ">>", 3) || \
+			!ft_strncmp(redirect, "<<", 3) || \
+			!ft_strncmp(redirect, ">", 2) || \
+			!ft_strncmp(redirect, "<", 2))
+		return (1);
+	return (0);
 }
