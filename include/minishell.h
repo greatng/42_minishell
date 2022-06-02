@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 15:19:20 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:46:43 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ void	struct_fd(t_cmd *cmd, char ***cmd_arr);
 t_cmd	*create_struct(char ***cmd);
 int	check_redirection(char *redirect);
 //execute cmd
-void	shell_execute(char ***cmd);
+void	shell_execute(t_cmd *tab_cmd);
 int	run_builtin(char **cmd);
+int	check_rightcmd(char **cmd, char **path);
+char	**get_path(void);
 
 char	*rl_gets(char *line_read);
 
 //free every malloc var at the end of every loop
-void	end_of_loop(char *line, char ***cmd);
+void	end_of_loop(char *line, t_cmd *tab_cmd);
 
 #endif
