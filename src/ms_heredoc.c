@@ -6,17 +6,40 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 15:24:22 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:19:27 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/phrase.h"
 
-static char	*here_doc_join(char *res, char *buf)
+// static int	need_translate(char *delimit)
+// {
+// 	int	c;
+// 	int	len;
+// 	char	*tmp;
+
+// 	c = delimit[0];
+// 	if (c == '\'' || c == '\"')
+// 	{
+// 		len = ft_strlen(delimit);
+// 		if (len > 1 && delimit[len - 1] == c)
+// 		{
+// 			tmp = ft_strtrim(delimit, "\'\"");
+// 			free(delimit);
+// 			delimit = tmp;
+// 			return (0);
+// 		}
+// 	}
+// 	return (1);
+// }
+
+static char	*here_doc_join(char *res, char *buf, int mode)
 {
 	char	*tmp;
 	char	*return_data;
 
+	if (mode)
+		buf = translate_cmd(buf);
 	tmp = ft_strjoin(buf, "\n");
 	free(buf);
 	buf = tmp;
@@ -31,19 +54,22 @@ int	here_doc(char *delimit)
 	char	*buf;
 	char	*res;
 	int		tmp_pipe[2];
+	int		mode;
 
 	res = NULL;
+	// mode = need_translate(delimit);
 	pipe(tmp_pipe);
 	while (1)
 	{
 		buf = readline("> ");
 		if (!ft_strncmp(buf, delimit, ft_strlen(delimit) + 1))
 			break ;
-		res = here_doc_join(res, buf);
+		res = here_doc_join(res, buf, 1);
 	}
 	if (buf)
 		free(buf);
 	write(tmp_pipe[PIPEWR], res, ft_strlen(res));
 	close(tmp_pipe[PIPEWR]);
+	free(res);
 	return (tmp_pipe[PIPERD]);
 }

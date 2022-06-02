@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/02 15:13:12 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:00:58 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,16 @@ void	shell_execute(t_cmd *tab_cmd)
 	{
 		if (!tab_cmd[i].cmd[0])
 			break ;
-		pipe(pipefd);
 		if (i > 0 && tab_cmd[i].infile == STDIN_FILENO)
-			dup2(pipefd[PIPERD], tab_cmd[i - 1].outfile);
+		{
+			dup2(pipefd[PIPERD], STDIN_FILENO);
+			close(pipefd[PIPERD]);
+		}
 		else
-			dup2(STDIN_FILENO, tab_cmd[i].infile);
+			dup2(tab_cmd[i].infile, STDIN_FILENO);
+		pipe(pipefd);
 		if (tab_cmd[i].outfile == STDOUT_FILENO && i < tab_cmd->size - 1)
-			dup2(pipefd[PIPEWR], tab_cmd[i].outfile);
+			dup2(pipefd[PIPEWR], STDOUT_FILENO);
 		else
 			dup2(tab_cmd[i].outfile, STDOUT_FILENO);
 		if (!run_builtin(tab_cmd[i].cmd))
@@ -85,8 +88,7 @@ void	shell_execute(t_cmd *tab_cmd)
 		if (tab_cmd[i].infile != STDIN_FILENO)
 			close(tab_cmd[i].infile);
 		dup2(savefd[1], STDOUT_FILENO);
-		dup2(savefd[0], STDOUT_FILENO);
-		close(pipefd[PIPERD]);
+		dup2(savefd[0], STDIN_FILENO);
 		close(pipefd[PIPEWR]);
 		i++;
 	}
