@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 17:45:31 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:01:00 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	shell_child_signal(void);
 void	shell_execute(t_cmd *tab_cmd);
 //If it built in Run cmd and return 1, if it's not return 0
 int		run_builtin(char **cmd);
+//Collect child exit status
+void	collect_status(int size);
 
 //Find correct path for system command
 void	check_rightcmd(char **cmd, char **path);

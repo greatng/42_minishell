@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 17:44:21 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:05:31 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	shell_execute(t_cmd *tab_cmd)
 	int	i;
 	int	savefd[2];
 	int	pipefd[2];
-	int	status;
+	int	count;
 
 	i = -1;
-	status = 0;
+	count = 0;
 	savefd[1] = dup(STDOUT_FILENO);
 	savefd[0] = dup(STDIN_FILENO);
 	shell_child_signal();
@@ -89,13 +89,12 @@ void	shell_execute(t_cmd *tab_cmd)
 			break ;
 		redirect_fd(tab_cmd, i, pipefd);
 		if (!run_builtin(tab_cmd[i].cmd))
+		{
+			count++;
 			execute_cmd(tab_cmd[i].cmd);
+		}
 		reset_fd(tab_cmd, i, pipefd, savefd);
 	}
-	waitpid(-1, &status, 0);
-	if (WIFEXITED(status))
-		g_mini.exit_status = WEXITSTATUS(status);
-	if (WIFSIGNALED(status))
-		g_mini.exit_status = status + (1 << 7);
+	collect_status((count));
 	shell_signal();
 }

@@ -22,12 +22,6 @@ unset -> done
 
 export -> done
 
-just a quick coding not sure if it really work well
-
 **Note**
 
 Makefile is only test on Darwin (MacOS), please make sure that it can run on linux, etc.
-
-**What left**
-
-Redirectiom
