@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 15:59:54 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 17:44:21 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	shell_execute(t_cmd *tab_cmd)
 	status = 0;
 	savefd[1] = dup(STDOUT_FILENO);
 	savefd[0] = dup(STDIN_FILENO);
+	shell_child_signal();
 	while (++i < (int)tab_cmd->size)
 	{
 		if (!tab_cmd[i].cmd[0])
@@ -95,5 +96,6 @@ void	shell_execute(t_cmd *tab_cmd)
 	if (WIFEXITED(status))
 		g_mini.exit_status = WEXITSTATUS(status);
 	if (WIFSIGNALED(status))
-		g_mini.exit_status = 130;
+		g_mini.exit_status = status + (1 << 7);
+	shell_signal();
 }

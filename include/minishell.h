@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 16:09:43 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 17:45:31 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_cmd
 
 //Shell initiate, Run only first time
 void	shell_init(int argc, char **argv, char **env);
+void	disable_echo(void);
 void	enable_echo(void);
 void	shell_signal(void);
 void	convert_arg(int argc, char **argv, char **env);
@@ -81,6 +82,8 @@ int		check_redirection(char *redirect);
 //If it's heredoc run this function
 int		here_doc(char *delimit);
 
+//Child signal handler
+void	shell_child_signal(void);
 //Execute command from struct value
 void	shell_execute(t_cmd *tab_cmd);
 //If it built in Run cmd and return 1, if it's not return 0

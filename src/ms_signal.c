@@ -6,11 +6,38 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:49:20 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/29 11:35:47 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 17:45:21 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+static void	kill_child(int sig)
+{
+	if (sig == SIGINT)
+	{
+		signal(SIGINT, SIG_IGN);
+		kill(0, SIGINT);
+		signal(SIGINT, SIG_DFL);
+	}
+	if (sig == SIGQUIT)
+	{
+		signal(SIGQUIT, SIG_IGN);
+		kill(0, SIGQUIT);
+		signal(SIGQUIT, SIG_DFL);
+	}
+}
+
+void	shell_child_signal(void)
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = kill_child;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
+}
 
 static void	shell_sighandler(int sig)
 {

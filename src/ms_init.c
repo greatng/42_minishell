@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:50:53 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 15:13:39 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:25:45 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	enable_echo(void)
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
-static void	disable_echo(void)
+void	disable_echo(void)
 {
 	struct termios	term;
 
@@ -41,6 +41,5 @@ void	shell_init(int argc, char **argv, char **env)
 {
 	print_shell_intro();
 	convert_arg(argc, argv, env);
-	disable_echo();
 	shell_signal();
 }
