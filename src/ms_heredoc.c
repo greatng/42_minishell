@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/02 21:55:51 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 20:16:43 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	here_doc(char *delimit)
 	while (1)
 	{
 		buf = readline("> ");
+		if (!buf)
+			break ;
 		if (!ft_strncmp(buf, delimit, ft_strlen(delimit) + 1))
 			break ;
 		res = here_doc_join(res, buf, 1);
