@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/02 14:46:43 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:09:43 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@
 # define CYAN "\033[0;36m"
 # define RES "\033[0m"
 
+# define NAME1 "  __  _   _     ___                       _  "
+# define NAME2 " /__ |_) |_  /\\  |    ()      | | | |\\/| |_) "
+# define NAME3 " \\_| | \\ |_ /--\\ |    (_X   \\_| |_| |  | | "
+
 # define PIPERD 0
 # define PIPEWR 1
 
@@ -52,30 +56,41 @@ t_mini	g_mini;
 
 typedef struct s_cmd
 {
-	char	**cmd;
-	int	infile;
-	int	outfile;
+	int		infile;
+	int		outfile;
 	size_t	size;
+	char	**cmd;
 }	t_cmd;
 
-//Init part
+//Shell initiate, Run only first time
 void	shell_init(int argc, char **argv, char **env);
 void	enable_echo(void);
 void	shell_signal(void);
 void	convert_arg(int argc, char **argv, char **env);
 
-//translate any $VAR, Convert char *** to struct
-int	here_doc(char *delimit);
-void	struct_fd(t_cmd *cmd, char ***cmd_arr);
-t_cmd	*create_struct(char ***cmd);
-int	check_redirection(char *redirect);
-//execute cmd
-void	shell_execute(t_cmd *tab_cmd);
-int	run_builtin(char **cmd);
-int	check_rightcmd(char **cmd, char **path);
-char	**get_path(void);
-
+//Read input
 char	*rl_gets(char *line_read);
+
+//Convert output from lexer -> parser > struct
+t_cmd	*create_struct(char ***cmd);
+
+//Assign fd to struct
+void	struct_fd(t_cmd *cmd, char ***cmd_arr);
+//Check if it redirection
+int		check_redirection(char *redirect);
+//If it's heredoc run this function
+int		here_doc(char *delimit);
+
+//Execute command from struct value
+void	shell_execute(t_cmd *tab_cmd);
+//If it built in Run cmd and return 1, if it's not return 0
+int		run_builtin(char **cmd);
+
+//Find correct path for system command
+void	check_rightcmd(char **cmd, char **path);
+
+//get path from global environment
+char	**get_path(void);
 
 //free every malloc var at the end of every loop
 void	end_of_loop(char *line, t_cmd *tab_cmd);

@@ -6,12 +6,13 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:39:00 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/02 15:12:00 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:58:53 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+//Clear memory every end-of-loop
 void	end_of_loop(char *line, t_cmd *tab_cmd)
 {
 	size_t	i;

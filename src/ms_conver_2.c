@@ -6,12 +6,13 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:24:41 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/01 15:22:26 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:58:36 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+//Check how to read infile
 static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 {
 	if (cmd_arg[j + 1])
@@ -29,13 +30,14 @@ static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 			cmd->infile = open(cmd_arg[j + 1], \
 				O_RDONLY, 0755);
 			if (cmd->infile == -1)
-				printf("%s: No such file or directory\n", cmd_arg[j + 1]);
+				perror(cmd_arg[j + 1]);
 		}
 		return ;
 	}
 	return ;
 }
 
+//Check how to write outfile
 static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 {
 	if (cmd_arg[j + 1])
@@ -57,6 +59,7 @@ static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 	return ;
 }
 
+//Free char ***cmd
 static void	clean_cmd(char ***cmd)
 {
 	size_t	i;
@@ -77,6 +80,7 @@ static void	clean_cmd(char ***cmd)
 	free(cmd);
 }
 
+//Open file for input, output and assign in Struct fd
 void	struct_fd(t_cmd *cmd, char ***cmd_arr)
 {
 	size_t	i;
@@ -97,6 +101,7 @@ void	struct_fd(t_cmd *cmd, char ***cmd_arr)
 	clean_cmd(cmd_arr);
 }
 
+//Check if it redirection
 int	check_redirection(char *redirect)
 {
 	if (!ft_strncmp(redirect, ">>", 3) || \

@@ -6,14 +6,26 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/02 22:25:21 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:59:54 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+static int	clean_env(void)
+{
+	int	i;
+
+	i = 0;
+	while (g_mini.env[i])
+		free(g_mini.env[i++]);
+	free(g_mini.env);
+	return (1);
+}
+
 static void	reset_fd(t_cmd *tab_cmd, size_t i, int *pipefd, int *savefd)
 {
+	i = 0;
 	if (tab_cmd[i].outfile != STDOUT_FILENO)
 		close(tab_cmd[i].outfile);
 	if (tab_cmd[i].infile != STDIN_FILENO)
@@ -48,51 +60,29 @@ static void	execute_cmd(char **cmd)
 	if (!pid)
 	{
 		path = get_path();
-		if (check_rightcmd(cmd, path))
-			execve(cmd[0], cmd, g_mini.env);
-		ft_putstr_fd(cmd[0], STDERR_FILENO);
-		ft_putendl_fd(": command not found", STDERR_FILENO);
-		g_mini.exit_status = 127;
-		exit(EXIT_FAILURE);
+		check_rightcmd(cmd, path);
+		if (execve(cmd[0], cmd, g_mini.env) == -1)
+		{
+			clean_env();
+			ft_putstr_fd(cmd[0], STDERR_FILENO);
+			ft_putendl_fd(": command not found", STDERR_FILENO);
+			exit(127);
+		}
 	}
-	waitpid(pid, NULL, 0);
 }
-
-int	run_builtin(char **cmd)
-{
-	if (!ft_strncmp("cd", cmd[0], 3))
-		change_dir(cmd[1]);
-	else if (!ft_strncmp("pwd", cmd[0], 4))
-		present_wd();
-	else if (!ft_strncmp("echo", cmd[0], 5))
-		shell_echo(cmd);
-	else if (!ft_strncmp("exit", cmd[0], 5))
-		shell_exit();
-	else if (!ft_strncmp("ls", cmd[0], 3))
-		shell_ls();
-	else if (!ft_strncmp("clear", cmd[0], 6))
-		shell_clear();
-	else if (!ft_strncmp("env", cmd[0], 4))
-		print_env(cmd);
-	else if (!ft_strncmp("export", cmd[0], 7))
-		shell_export(cmd);
-	else if (!ft_strncmp("unset", cmd[0], 6))
-		shell_unset(cmd);
-	else
-		return (0);
-	return (1);
-}	
 
 void	shell_execute(t_cmd *tab_cmd)
 {
-	size_t	i;
-	int		savefd[2];
-	int		pipefd[2];
+	int	i;
+	int	savefd[2];
+	int	pipefd[2];
+	int	status;
 
-	i = 0;
+	i = -1;
+	status = 0;
 	savefd[1] = dup(STDOUT_FILENO);
 	savefd[0] = dup(STDIN_FILENO);
-	while (i < tab_cmd->size)
+	while (++i < (int)tab_cmd->size)
 	{
 		if (!tab_cmd[i].cmd[0])
 			break ;
@@ -100,6 +90,10 @@ void	shell_execute(t_cmd *tab_cmd)
 		if (!run_builtin(tab_cmd[i].cmd))
 			execute_cmd(tab_cmd[i].cmd);
 		reset_fd(tab_cmd, i, pipefd, savefd);
-		i++;
 	}
+	waitpid(-1, &status, 0);
+	if (WIFEXITED(status))
+		g_mini.exit_status = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
+		g_mini.exit_status = 130;
 }
