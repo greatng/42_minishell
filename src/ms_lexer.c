@@ -43,9 +43,9 @@ static int	count_comp(char *line)
 		{
 			flag = is_syntax(line[i]);
 			if (flag != 1)
-			    count++;
+				count++;
 			if (line[i] == '\'' || line[i] == '\"')
-			    i += skip_quote(line, i); 
+				i += skip_quote(line, i);
 		}
 		i++;
 	}

@@ -54,10 +54,11 @@ int	here_doc(char *delimit)
 	char	*buf;
 	char	*res;
 	int		tmp_pipe[2];
-	// int		mode;
+	int		mode;
 
 	res = NULL;
-	// mode = need_translate(delimit);
+	mode = !find_quote(delimit);
+	delimit = unquote(delimit);
 	pipe(tmp_pipe);
 	while (1)
 	{
@@ -66,12 +67,13 @@ int	here_doc(char *delimit)
 			break ;
 		if (!ft_strncmp(buf, delimit, ft_strlen(delimit) + 1))
 			break ;
-		res = here_doc_join(res, buf, 1);
+		res = here_doc_join(res, buf, mode);
 	}
 	if (buf)
 		free(buf);
 	write(tmp_pipe[PIPEWR], res, ft_strlen(res));
 	close(tmp_pipe[PIPEWR]);
 	free(res);
+	free(delimit);
 	return (tmp_pipe[PIPERD]);
 }

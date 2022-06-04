@@ -18,11 +18,15 @@
 # include <stdio.h>
 # include "minishell.h"
 
-/* 1_quote_utils.c */
+/* ms_quote_utils.c */
 char	*get_envname(char *str);
 char	*ft_getenv(char *name, char **env);
 
-/* 2_translate_vars.c */
+/* ms_quote_utils_2.c */
+char    *unquote(char *command);
+int     find_quote(char *str);
+
+/* ms_translate_vars.c */
 char	*ft_append(char *buffer, char c);
 char	*ft_join(char *front, char *back);
 char	*ft_append_env(char *buffer, char *command, int *index);
