@@ -6,32 +6,32 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 20:16:43 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/04 11:51:32 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/phrase.h"
 
-// static int	need_translate(char *delimit)
-// {
-// 	int	c;
-// 	int	len;
-// 	char	*tmp;
+static char	*need_translate(char *delimit, int *mode)
+{
+	int	c;
+	int	len;
 
-// 	c = delimit[0];
-// 	if (c == '\'' || c == '\"')
-// 	{
-// 		len = ft_strlen(delimit);
-// 		if (len > 1 && delimit[len - 1] == c)
-// 		{
-// 			tmp = ft_strtrim(delimit, "\'\"");
-// 			free(delimit);
-// 			delimit = tmp;
-// 			return (0);
-// 		}
-// 	}
-// 	return (1);
-// }
+	delimit = ft_strdup(delimit);
+	c = delimit[0];
+	if (c == '\'' || c == '\"')
+	{
+		len = ft_strlen(delimit);
+		if (len > 1 && delimit[len - 1] == c)
+		{
+			delimit = translate_cmd(delimit);
+			*mode = 0;
+			return (delimit);
+		}
+	}
+	*mode = 1;
+	return (delimit);
+}
 
 static char	*here_doc_join(char *res, char *buf, int mode)
 {
@@ -54,10 +54,10 @@ int	here_doc(char *delimit)
 	char	*buf;
 	char	*res;
 	int		tmp_pipe[2];
-	// int		mode;
+	int		mode;
 
 	res = NULL;
-	// mode = need_translate(delimit);
+	delimit = need_translate(delimit, &mode);
 	pipe(tmp_pipe);
 	while (1)
 	{
@@ -66,10 +66,11 @@ int	here_doc(char *delimit)
 			break ;
 		if (!ft_strncmp(buf, delimit, ft_strlen(delimit) + 1))
 			break ;
-		res = here_doc_join(res, buf, 1);
+		res = here_doc_join(res, buf, mode);
 	}
 	if (buf)
 		free(buf);
+	free(delimit);
 	write(tmp_pipe[PIPEWR], res, ft_strlen(res));
 	close(tmp_pipe[PIPEWR]);
 	free(res);
