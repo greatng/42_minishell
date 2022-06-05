@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/04 11:51:32 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/05 21:51:20 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ static void	heredoc_sighandler(int sig)
 		signal(SIGINT, SIG_DFL);
 		write(1, "\n", 1);
 	}
-	if (sig == SIGQUIT)
-	{
-		signal(SIGQUIT, SIG_IGN);
-		kill(0, SIGQUIT);
-	}
 }
 
 void	shell_heredoc_signal(void)
@@ -36,7 +31,7 @@ void	shell_heredoc_signal(void)
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGQUIT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 static char	*here_doc_join(char *res, char *buf, int mode)
@@ -61,25 +56,25 @@ static void	child_here_doc(int *tmp_pipe, char *delimit)
 	char	*res;
 	int		mode;
 
-	close(tmp_pipe[PIPERD]);
 	res = NULL;
+	close(tmp_pipe[PIPERD]);
 	mode = !find_quote(delimit);
 	delimit = unquote(delimit);
 	while (1)
 	{
 		buf = readline("> ");
-		if (!buf && write(1, "\n", 1))
+		if (!buf || !ft_strncmp(buf, delimit, ft_strlen(delimit) + 1))
+		{
+			if (buf)
+				free(buf);
+			write(tmp_pipe[PIPEWR], res, ft_strlen(res));
+			close(tmp_pipe[PIPEWR]);
+			free(res);
+			free(delimit);
 			break ;
-		if (!ft_strncmp(buf, delimit, ft_strlen(delimit) + 1))
-			break ;
+		}
 		res = here_doc_join(res, buf, mode);
 	}
-	if (buf)
-		free(buf);
-	free(delimit);
-	write(tmp_pipe[PIPEWR], res, ft_strlen(res));
-	close(tmp_pipe[PIPEWR]);
-	free(res);
 	exit (0);
 }
 
@@ -90,15 +85,16 @@ int	here_doc(char *delimit)
 	int		status;
 
 	pipe(tmp_pipe);
+
 	shell_heredoc_signal();
 	pid = fork();
 	if (!pid)
 	{
+		signal(SIGINT, SIG_DFL);
 		child_here_doc(tmp_pipe, delimit);
 	}
 	else
 	{
-		signal(SIGINT, SIG_IGN);
 		waitpid(pid, &status, 0);
 		close(tmp_pipe[PIPEWR]);
 	}

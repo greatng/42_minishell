@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:24:41 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/04 11:26:34 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/05 21:10:02 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@ static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 	if (!ft_strncmp(cmd_arg[j], "<<", 3))
 	{
 		if (cmd_arg[j + 1])
+		{
+			if (cmd->infile != STDIN_FILENO)
+				close(cmd->infile);
 			cmd->infile = here_doc(cmd_arg[j + 1]);
+		}
 	}
 	else if (!ft_strncmp(cmd_arg[j], "<", 2))
 	{
 		if (cmd_arg[j + 1])
 		{
 			cmd_arg[j + 1] = translate_cmd(cmd_arg[j + 1]);
+			if (cmd->infile != STDIN_FILENO)
+				close(cmd->infile);
 			cmd->infile = open(cmd_arg[j + 1], \
 				O_RDONLY, 0755);
 			if (cmd->infile == -1)
@@ -41,6 +47,8 @@ static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 		if (cmd_arg[j + 1])
 		{
 			cmd_arg[j + 1] = translate_cmd(cmd_arg[j + 1]);
+			if (cmd->outfile != STDOUT_FILENO)
+				close(cmd->outfile);
 			cmd->outfile = open(cmd_arg[j + 1], \
 				O_RDWR | O_APPEND | O_CREAT, 0755);
 		}
@@ -50,6 +58,8 @@ static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 		if (cmd_arg[j + 1])
 		{
 			cmd_arg[j + 1] = translate_cmd(cmd_arg[j + 1]);
+			if (cmd->outfile != STDOUT_FILENO)
+				close(cmd->outfile);
 			cmd->outfile = open(cmd_arg[j + 1], \
 				O_WRONLY | O_TRUNC | O_CREAT, 0755);
 		}

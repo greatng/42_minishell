@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 18:05:31 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/05 21:06:44 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,8 @@ static int	clean_env(void)
 	return (1);
 }
 
-static void	reset_fd(t_cmd *tab_cmd, size_t i, int *pipefd, int *savefd)
+static void	reset_fd(int *pipefd, int *savefd)
 {
-	i = 0;
-	if (tab_cmd[i].outfile != STDOUT_FILENO)
-		close(tab_cmd[i].outfile);
-	if (tab_cmd[i].infile != STDIN_FILENO)
-		close(tab_cmd[i].infile);
 	dup2(savefd[1], STDOUT_FILENO);
 	dup2(savefd[0], STDIN_FILENO);
 	close(pipefd[PIPEWR]);
@@ -93,8 +88,8 @@ void	shell_execute(t_cmd *tab_cmd)
 			count++;
 			execute_cmd(tab_cmd[i].cmd);
 		}
-		reset_fd(tab_cmd, i, pipefd, savefd);
+		reset_fd(pipefd, savefd);
 	}
-	collect_status((count));
+	collect_status(count);
 	shell_signal();
 }
