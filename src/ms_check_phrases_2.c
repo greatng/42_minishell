@@ -11,70 +11,31 @@
 /* ************************************************************************** */
 
 #include "../include/phrase.h"
+#include "../include/minishell.h"
 
-/* return 0 if pharase is in complete */
-/* return 1 when phrase is complete */
-int	able_to_phrase(char *str)
+int	check_phrase(char *cmd)
 {
-	int		i;
-	int		flag;
-	char	quote;
+	char	**lex;
 
-	i = 0;
-	flag = 0;
-	while (str[i])
+	if (!is_complete_quote(cmd))
 	{
-		if (!flag && (str[i] == '\'' || str[i] == '\"'))
-		{
-			flag = 1;
-			quote = str[i];
-		}
-		else if (flag && str[i] == quote)
-		{
-			flag = 0;
-		}
-		i++;
-	}
-	if (flag)
+		g_mini.exit_status = 2;
 		return (0);
-	return (1);
-}
-
-int	is_pipe_error(char *line)
-{
-	int	i;
-	int	last;
-
-	i = 0;
-	last = 0;
-	if (line[i] == '|')
-		return (1);
-	while (line[i])
-	{
-		if (line[i] == '|')
-		{
-			if (last)
-				return (1);
-			last = 1;
-		}
-		else
-		{
-			last = 0;
-		}
-		i++;
 	}
-	if (i > 0 && line[i - 1] == '|')
-		return (2);
-	return (0);
-}
-
-int	is_syntax(char c)
-{
-	if (c == ' ')
-		return (1);
-	else if (c == '<' || c == '>')
-		return (2);
-	else if (c == '|')
-		return (3);
-	return (0);
+	if (is_pipe_error(cmd))
+	{
+		g_mini.exit_status = 2;
+		printf("bash: syntax error near unexpected token `|\'\n");
+		return (0);
+	}
+	lex = lexer(cmd);
+	if (!check_lexer(lex))
+	{
+		g_mini.exit_status = 2;
+		free_lexer(lex);
+		return (0);
+	}
+	g_mini.exit_status = 0;
+	free_lexer(lex);
+	return (1);
 }

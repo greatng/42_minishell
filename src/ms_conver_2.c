@@ -33,29 +33,6 @@ static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 	}
 }
 
-// static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
-// {
-// 	if (cmd_arg[j + 1])
-// 		cmd_arg[j + 1] = translate_cmd(cmd_arg[j + 1]);
-// 	if (!ft_strncmp(cmd_arg[j], "<<", 3))
-// 	{
-// 		if (cmd_arg[j + 1])
-// 			cmd->infile = here_doc(cmd_arg[j + 1]);
-// 		return ;
-// 	}
-// 	else if (!ft_strncmp(cmd_arg[j], "<", 2))
-// 	{
-// 		if (cmd_arg[j + 1])
-// 		{
-// 			cmd->infile = open(cmd_arg[j + 1], O_RDONLY, 0755);
-// 			if (cmd->infile == -1)
-// 				perror(cmd_arg[j + 1]);
-// 		}
-// 		return ;
-// 	}
-// 	return ;
-// }
-
 //Check how to write outfile
 static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 {

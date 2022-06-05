@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 		enable_echo();
 		if (!line_read)
 			shell_exit();
-		if (ft_strlen(line_read))
+		if (ft_strlen(line_read) && check_phrase(line_read))
 		{
 			tab_cmd = create_struct(parser(lexer(line_read)));
 			shell_execute(tab_cmd);

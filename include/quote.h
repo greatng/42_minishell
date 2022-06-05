@@ -25,11 +25,11 @@ char	*ft_getenv(char *name, char **env);
 /* ms_quote_utils_2.c */
 char    *unquote(char *command);
 int     find_quote(char *str);
-
-/* ms_translate_vars.c */
 char	*ft_append(char *buffer, char c);
 char	*ft_join(char *front, char *back);
 char	*ft_append_env(char *buffer, char *command, int *index);
+
+/* ms_translate_vars.c */
 char	*translate_cmd(char *command);
 
 #endif
