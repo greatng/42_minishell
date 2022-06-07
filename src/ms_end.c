@@ -26,7 +26,7 @@ void	end_of_loop(char *line, t_cmd *tab_cmd)
 	while (i < tab_cmd->size)
 	{
 		if (tab_cmd[i].cmd)
-			free(tab_cmd[i].cmd);
+			free_lexer(tab_cmd[i].cmd);
 		if (tab_cmd[i].infile != STDIN_FILENO)
 			close(tab_cmd[i].infile);
 		if (tab_cmd[i].outfile != STDOUT_FILENO)
