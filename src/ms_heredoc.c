@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/05 21:51:20 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/05 21:55:47 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	here_doc(char *delimit)
 	int		status;
 
 	pipe(tmp_pipe);
-
 	shell_heredoc_signal();
 	pid = fork();
 	if (!pid)

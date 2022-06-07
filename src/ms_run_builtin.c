@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:40:57 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 15:59:15 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/07 22:05:21 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ int	run_builtin(char **cmd)
 		shell_echo(cmd);
 	else if (!ft_strncmp("exit", cmd[0], 5))
 		shell_exit();
-	else if (!ft_strncmp("ls", cmd[0], 3))
-		shell_ls();
-	else if (!ft_strncmp("clear", cmd[0], 6))
-		shell_clear();
 	else if (!ft_strncmp("env", cmd[0], 4))
 		print_env(cmd);
 	else if (!ft_strncmp("export", cmd[0], 7))

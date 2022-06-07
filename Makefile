@@ -17,7 +17,7 @@ HEADER			=	minishell builtin phrase quote
 HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
-SRC			=	main ms_additional_fn ms_builtin_1 ms_builtin_2 ms_builtin_utils \
+SRC			=	main ms_builtin_1 ms_builtin_2 ms_builtin_utils \
 					ms_end ms_free_phrase ms_lexer ms_parser ms_pipe ms_heredoc \
 					ms_check_phrases ms_quote_utils ms_rl_get ms_signal ms_translate_vars \
 					ms_init ms_conver_1 ms_conver_2 ms_path ms_run_builtin ms_collect \
