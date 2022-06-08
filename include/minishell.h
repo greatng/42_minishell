@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 18:01:00 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:13:35 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	shell_child_signal(void);
 //Execute command from struct value
 void	shell_execute(t_cmd *tab_cmd);
 //If it built in Run cmd and return 1, if it's not return 0
-int		run_builtin(char **cmd);
+int		run_builtin(char **cmd, t_cmd *tab_cmd);
 //Collect child exit status
 void	collect_status(int size);
 
@@ -98,6 +98,6 @@ void	check_rightcmd(char **cmd, char **path);
 char	**get_path(void);
 
 //free every malloc var at the end of every loop
-void	end_of_loop(char *line, t_cmd *tab_cmd);
+void	end_of_loop(t_cmd *tab_cmd);
 
 #endif

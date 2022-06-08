@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:35:28 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/05 21:00:35 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:06:40 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(line_read) && check_phrase(line_read))
 		{
 			tab_cmd = create_struct(parser(lexer(line_read)));
+			free(line_read);
 			enable_echo();
 			shell_execute(tab_cmd);
-			end_of_loop(line_read, tab_cmd);
+			end_of_loop(tab_cmd);
 		}
 		else
 			free(line_read);

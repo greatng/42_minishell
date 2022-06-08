@@ -75,10 +75,10 @@ pig:
                ^#&&&&&&&&&&&&BPB$(HOTPINK)#BGGGGGGGBB$(SALMON)#&&&&&&&&&&&&&&&&J.\n\
               .5&&&&&&&&&&&&&$(HOTPINK)#BPPPP5PP55PPPPB$(SALMON)&&&&&&&&&&&&&&&&!\n\
               7&&&&&&&&&&&&&&$(HOTPINK)#PPPP?^5P!~PPPPG&$(SALMON)&&&#######&&&&&5.\n\
-             .Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#BBGBGBB##&&&B:\n\
-              J&&&##BBBBBB##&&&&$(HOTPINK)#BBBBBB#PB$(SALMON)&&&&&##BGGPPGBB#&&&P.\n\
-              :B&&#BBGPPGGB##&&&&#JYPPPJ?B&&&&&&#BBGGGBB##&&#!\n\
-               ^G&&#BBGGGBB#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
+             .Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#$(HOTPINK)BBGBGBB$(SALMON)##&&&B:\n\
+              J&&&##$(HOTPINK)BBBBBB$(SALMON)##&&&&#BBBBBB#PB&&&&&##$(HOTPINK)BGGPPGBB$(SALMON)#&&&P.\n\
+              :B&&#$(HOTPINK)BBGPPGGB$(SALMON)##&&&&#JYPPPJ?B&&&&&&#$(HOTPINK)BBGGGBB$(SALMON)##&&#!\n\
+               ^G&&#$(HOTPINK)BBGGGBB$(SALMON)#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
                 .?G########&&&&&&&&&&&&&&&&&&&&&&&&#G5YJJJYY5PY!.\n\
                    ^7J5GB#&&&&&&&&&&&&&&&&&&&&&&&&#YJPG##&&&&&@P.\n\
                :~!!777777?B&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#GJ:\n\

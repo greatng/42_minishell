@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/05 21:06:44 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:12:50 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	shell_execute(t_cmd *tab_cmd)
 		if (!tab_cmd[i].cmd[0])
 			break ;
 		redirect_fd(tab_cmd, i, pipefd);
-		if (!run_builtin(tab_cmd[i].cmd))
+		if (!run_builtin(tab_cmd[i].cmd, tab_cmd))
 		{
 			count++;
 			execute_cmd(tab_cmd[i].cmd);

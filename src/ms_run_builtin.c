@@ -6,13 +6,13 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:40:57 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/07 22:05:21 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:14:27 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	run_builtin(char **cmd)
+int	run_builtin(char **cmd, t_cmd *tab_cmd)
 {
 	if (!ft_strncmp("cd", cmd[0], 3))
 		change_dir(cmd[1]);
@@ -21,7 +21,10 @@ int	run_builtin(char **cmd)
 	else if (!ft_strncmp("echo", cmd[0], 5))
 		shell_echo(cmd);
 	else if (!ft_strncmp("exit", cmd[0], 5))
+	{
+		end_of_loop(tab_cmd);
 		shell_exit();
+	}
 	else if (!ft_strncmp("env", cmd[0], 4))
 		print_env(cmd);
 	else if (!ft_strncmp("export", cmd[0], 7))
