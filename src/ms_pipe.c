@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 01:43:37 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 02:01:32 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	redirect_fd(t_cmd *tab_cmd, size_t i, int *pipefd)
 		dup2(tab_cmd[i].outfile, STDOUT_FILENO);
 }
 
-static void	execute_cmd(char **cmd)
+static void	execute_cmd(char **cmd, t_cmd *tab_cmd)
 {
 	pid_t	pid;
 	char	**path;
@@ -54,6 +54,7 @@ static void	execute_cmd(char **cmd)
 	pid = fork();
 	if (!pid)
 	{
+		end_of_loop(tab_cmd);
 		path = get_path();
 		check_rightcmd(cmd, path);
 		if (execve(cmd[0], cmd, g_mini.env) == -1)
@@ -86,7 +87,7 @@ void	shell_execute(t_cmd *tab_cmd)
 		if (!run_builtin(tab_cmd[i].cmd, tab_cmd))
 		{
 			count++;
-			execute_cmd(tab_cmd[i].cmd);
+			execute_cmd(tab_cmd[i].cmd, tab_cmd);
 		}
 		reset_fd(pipefd, savefd);
 	}
