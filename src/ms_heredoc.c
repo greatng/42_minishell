@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 01:42:13 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:55:03 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,30 @@ static char	*here_doc_join(char *res, char *buf, int mode)
 	return (return_data);
 }
 
-static void	child_here_doc(int *tmp_pipe, char *delimit)
+static void	child_here_doc(int *tmp_pipe, char *delimit_q)
 {
 	char	*buf;
 	char	*res;
+	char	*delimit;
 	int		mode;
 
 	res = NULL;
 	close(tmp_pipe[PIPERD]);
-	mode = !find_quote(delimit);
-	delimit = unquote(delimit);
+	mode = !find_quote(delimit_q);
+	delimit = unquote(delimit_q);
+	free(delimit_q);
 	while (1)
 	{
 		buf = readline("> ");
 		if (!buf || !ft_strncmp(buf, delimit, ft_strlen(delimit) + 1))
 		{
-			if (buf)
-				free(buf);
 			write(tmp_pipe[PIPEWR], res, ft_strlen(res));
 			close(tmp_pipe[PIPEWR]);
-			free_heredoc(delimit, res);
-			break ;
+			free_heredoc(delimit, res, buf);
+			return ;
 		}
 		res = here_doc_join(res, buf, mode);
 	}
-	exit (0);
 }
 
 int	here_doc(char *delimit)
@@ -90,6 +89,7 @@ int	here_doc(char *delimit)
 	{
 		signal(SIGINT, SIG_DFL);
 		child_here_doc(tmp_pipe, delimit);
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{

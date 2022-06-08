@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 01:44:12 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:51:49 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	struct_fd(t_cmd *cmd, char ***cmd_arr);
 int		check_redirection(char *redirect);
 //If it's heredoc run this function
 int		here_doc(char *delimit);
-void	free_heredoc(char *delimit, char *res);
+void	free_heredoc(char *delimit, char *res, char *buf);
 //Child signal handler
 void	shell_child_signal(void);
 //Execute command from struct value
