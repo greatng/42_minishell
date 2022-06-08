@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 01:13:35 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:44:12 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	struct_fd(t_cmd *cmd, char ***cmd_arr);
 int		check_redirection(char *redirect);
 //If it's heredoc run this function
 int		here_doc(char *delimit);
-
+void	free_heredoc(char *delimit, char *res);
 //Child signal handler
 void	shell_child_signal(void);
 //Execute command from struct value
@@ -99,5 +99,8 @@ char	**get_path(void);
 
 //free every malloc var at the end of every loop
 void	end_of_loop(t_cmd *tab_cmd);
+
+//clean g_env
+int	clean_env(void);
 
 #endif

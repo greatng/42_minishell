@@ -6,13 +6,13 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 01:12:50 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:43:37 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	clean_env(void)
+int	clean_env(void)
 {
 	int	i;
 

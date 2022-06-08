@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:57:02 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/05 21:55:47 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:42:13 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ static void	child_here_doc(int *tmp_pipe, char *delimit)
 				free(buf);
 			write(tmp_pipe[PIPEWR], res, ft_strlen(res));
 			close(tmp_pipe[PIPEWR]);
-			free(res);
-			free(delimit);
+			free_heredoc(delimit, res);
 			break ;
 		}
 		res = here_doc_join(res, buf, mode);
