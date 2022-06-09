@@ -1,19 +1,27 @@
 NAME			=	minishell
+UNAME 			= 	$(shell uname -s)
 
 CC			=	gcc
 CFLAGS			=	-Wall -Wextra -Wextra
 LEAKS			=	-fsanitize=address
 READFLAG		=	-lreadline
 
+ifeq ($(UNAME), Darwin)
+	LDFLAGS			=	-L${HOMEBREW_PREFIX}/opt/readline/lib
+	CPPFLAGS		=	-I${HOMEBREW_PREFIX}/opt/readline/include
+endif
+
+
 HEADER_DIR		=	include
 HEADER			=	minishell builtin phrase quote
 HEADERS			=	$(addprefix $(HEADER_DIR)/, $(addsuffix .h, $(HEADER)))
 
 SRC_DIR			=	src
-SRC			=	main builtin_1 builtin_2 additional_fn signal \
-					1_phrase_utils 2_lexer 3_parser 4_free_phrase \
-					rl_get con_exec 1_quote_utils 2_translate_vars \
-					end_of_loop builtin_utils
+SRC			=	main ms_builtin_1 ms_builtin_2 ms_builtin_utils ms_free_heredoc \
+					ms_end ms_free_phrase ms_lexer ms_parser ms_pipe ms_heredoc \
+					ms_check_phrases ms_quote_utils ms_rl_get ms_signal ms_translate_vars \
+					ms_init ms_conver_1 ms_conver_2 ms_path ms_run_builtin ms_collect \
+          ms_check_phrases_2 ms_quote_utils_2
 SRCS 			=	$(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC)))
 
 OBJ_DIR			=	obj
@@ -32,14 +40,14 @@ all:				libft $(NAME)
 
 $(NAME):			$(OBJ)
 					@echo "$(GREEN)Compiling:$(NORMAL)"
-					$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(OBJ) $(LIBFT) -o $@
+					$(CC) $(CFLAGS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(HEADERS) 
 					@mkdir -p $(OBJ_DIR)
-					@$(CC) $(CFLAGS) -c $< -o $@ 
+					@$(CC) $(CPPFLAGS) $(CFLAGS)  -c $< -o $@ 
 
 libft:
-					@make -C ./libft/		
+					@make -C ./libft/	
 					
 
 clean:
@@ -67,10 +75,10 @@ pig:
                ^#&&&&&&&&&&&&BPB$(HOTPINK)#BGGGGGGGBB$(SALMON)#&&&&&&&&&&&&&&&&J.\n\
               .5&&&&&&&&&&&&&$(HOTPINK)#BPPPP5PP55PPPPB$(SALMON)&&&&&&&&&&&&&&&&!\n\
               7&&&&&&&&&&&&&&$(HOTPINK)#PPPP?^5P!~PPPPG&$(SALMON)&&&#######&&&&&5.\n\
-             .Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#BBGBGBB##&&&B:\n\
-              J&&&##BBBBBB##&&&&$(HOTPINK)#BBBBBB#PB$(SALMON)&&&&&##BGGPPGBB#&&&P.\n\
-              :B&&#BBGPPGGB##&&&&#JYPPPJ?B&&&&&&#BBGGGBB##&&#!\n\
-               ^G&&#BBGGGBB#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
+             .Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#$(HOTPINK)BBGBGBB$(SALMON)##&&&B:\n\
+              J&&&##$(HOTPINK)BBBBBB$(SALMON)##&&&&#BBBBBB#PB&&&&&##$(HOTPINK)BGGPPGBB$(SALMON)#&&&P.\n\
+              :B&&#$(HOTPINK)BBGPPGGB$(SALMON)##&&&&#JYPPPJ?B&&&&&&#$(HOTPINK)BBGGGBB$(SALMON)##&&#!\n\
+               ^G&&#$(HOTPINK)BBGGGBB$(SALMON)#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
                 .?G########&&&&&&&&&&&&&&&&&&&&&&&&#G5YJJJYY5PY!.\n\
                    ^7J5GB#&&&&&&&&&&&&&&&&&&&&&&&&#YJPG##&&&&&@P.\n\
                :~!!777777?B&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#GJ:\n\

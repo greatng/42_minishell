@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   additional_fn.c                                    :+:      :+:    :+:   */
+/*   ms_rl_get.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 00:02:35 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 12:04:38 by pngamcha         ###   ########.fr       */
+/*   Created: 2022/05/22 17:18:26 by pngamcha          #+#    #+#             */
+/*   Updated: 2022/06/01 10:12:27 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/builtin.h"
+#include "../include/minishell.h"
 
-void	shell_ls(void)
+char	*rl_gets(char *line_read)
 {
-	DIR				*d;
-	struct dirent	*filename;
+	char	buf[100];
+	char	*wd;
+	char	*shell;
 
-	d = opendir(getcwd(NULL, 1024));
-	if (!d)
-		perror("");
-	else
-	{
-		filename = readdir(d);
-		while (filename)
-		{
-			printf("%s  ", filename->d_name);
-			filename = readdir(d);
-		}
-		printf("\n");
-		closedir(d);
-	}
-}
-
-void	shell_clear(void)
-{
-	printf(CLEAR_SCRN);
+	getcwd(buf, 99);
+	wd = ft_strrchr(buf, '/');
+	ft_strlcat(wd, RED" § "RES, ft_strlen(wd) + 20);
+	shell = ft_strjoin(GREEN "minihell "RES, wd);
+	line_read = readline(shell);
+	free(shell);
+	if (line_read && *line_read)
+		add_history (line_read);
+	return (line_read);
 }

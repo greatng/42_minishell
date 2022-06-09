@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:56:19 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 17:05:01 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:11:41 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,30 @@ int	is_var_valid(char *cmd)
 		i++;
 	}
 	return (1);
+}
+
+void	update_pwd(int mode)
+{
+	char	buf[1024];
+	char	*cwd;
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	while (g_mini.env[i])
+	{
+		len = strlen_equal(g_mini.env[i]);
+		if (!(ft_strncmp("PWD=", g_mini.env[i], len + 1)))
+			break ;
+		i++;
+	}
+	if (mode)
+		cwd = ft_strjoin("PWD=", getcwd(buf, 1023));
+	else
+		cwd = ft_strjoin("OLD", g_mini.env[i]);
+	if (!check_var_dup(cwd))
+		if (!cwd)
+			add_env(cwd);
+	if (!cwd)
+		free(cwd);
 }

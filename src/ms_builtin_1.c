@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_1.c                                        :+:      :+:    :+:   */
+/*   ms_builtin_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 18:00:21 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 03:13:24 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	change_dir(char *cmd)
 
 	i = 0;
 	dir = cmd;
+	update_pwd(1);
 	if (!dir)
 	{
 		while (g_mini.env[i])
@@ -31,6 +32,11 @@ void	change_dir(char *cmd)
 	}
 	if (chdir(dir))
 		perror("");
+	else
+	{
+		update_pwd(0);
+		update_pwd(1);
+	}
 	g_mini.exit_status = errno;
 }
 
@@ -46,16 +52,13 @@ static	void	print_echo(char **echo, size_t i, size_t size, int newline)
 {
 	while (echo[i] && i < size - 1)
 	{
-		ft_putstr_fd(echo[i], STDOUT_FILENO);
+		ft_putstr_fd(echo[i++], STDOUT_FILENO);
 		ft_putchar_fd(' ', STDOUT_FILENO);
-		free(echo[i++]);
 	}
 	if (!newline)
 		ft_putendl_fd(echo[i], STDOUT_FILENO);
 	else
 		ft_putstr_fd(echo[i], STDOUT_FILENO);
-	free(echo[i]);
-	free(echo);
 }
 
 void	shell_echo(char **echo)
@@ -86,9 +89,9 @@ void	shell_exit(void)
 	int	i;
 
 	i = 0;
-	while (g_mini.env[i])
-		free(g_mini.env[i++]);
-	free(g_mini.env);
-	printf(RED"Exiting shell...\n"RES);
-	exit(EXIT_SUCCESS);
+	enable_echo();
+	clean_env();
+	rl_clear_history();
+	ft_putendl_fd(RED"Exiting shell..."RES, STDERR_FILENO);
+	exit(g_mini.exit_status);
 }

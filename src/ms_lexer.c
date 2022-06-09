@@ -39,16 +39,11 @@ static int	count_comp(char *line)
 	flag = 1;
 	while (line[i])
 	{
-		if (line[i] == ' ' || line[i] == '|')
+		if (is_syntax(line[i]) != flag || line[i] == '|')
 		{
-			flag = 1;
-			if (line[i] == '|')
+			flag = is_syntax(line[i]);
+			if (flag != 1)
 				count++;
-		}
-		else
-		{
-			if (flag && ++count)
-				flag = 0;
 			if (line[i] == '\'' || line[i] == '\"')
 				i += skip_quote(line, i);
 		}
@@ -64,20 +59,19 @@ static int	count_w(char *line, int index)
 	char	quote;
 
 	i = 0;
-	flag = 0;
+	flag = is_syntax(line[index]);
+	quote = 0;
 	if (line[index + i] == '|')
 		return (1);
-	while (line[index + i] && (flag || (line[index + i] \
-		!= ' ' && line[index + i] != '|')))
+	while (line[index + i] && (quote || (is_syntax(line[index + i]) == flag)))
 	{
-		if (!flag && (line[index + i] == '\'' || line[index + i] == '\"'))
+		if (!quote && (line[index + i] == '\'' || line[index + i] == '\"'))
 		{
-			flag = 1;
 			quote = line[index + i];
 		}
-		else if (flag && line[index + i] == quote)
+		else if (quote && line[index + i] == quote)
 		{
-			flag = 0;
+			quote = 0;
 		}
 		i++;
 	}

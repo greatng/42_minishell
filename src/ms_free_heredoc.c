@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_get.c                                           :+:      :+:    :+:   */
+/*   ms_free_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/22 17:18:26 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 12:07:37 by pngamcha         ###   ########.fr       */
+/*   Created: 2022/06/09 01:39:35 by pngamcha          #+#    #+#             */
+/*   Updated: 2022/06/09 21:42:59 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*rl_gets(char *line_read)
+void	free_heredoc(char *delimit, char *res, char *buf)
 {
-	line_read = readline (GREEN "minihell" RES RED" § " RES);
-	if (line_read && *line_read)
-		add_history (line_read);
-	return (line_read);
+	free(delimit);
+	free(res);
+	if (buf)
+		free(buf);
+	clean_env();
 }
