@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 01:51:49 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 21:43:16 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ char	**get_path(void);
 void	end_of_loop(t_cmd *tab_cmd);
 
 //clean g_env
-int	clean_env(void);
+int		clean_env(void);
 
 #endif
