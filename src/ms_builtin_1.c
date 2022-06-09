@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 03:13:24 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/09 21:58:26 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,6 @@ void	shell_echo(char **echo)
 
 void	shell_exit(void)
 {
-	int	i;
-
-	i = 0;
 	enable_echo();
 	clean_env();
 	rl_clear_history();
