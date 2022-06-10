@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:48 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/03 15:45:11 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 10:37:29 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,32 @@ char	**get_path(void)
 	return (path);
 }
 
-void	check_rightcmd(char **cmd, char **path)
+static char	**deep_copy_cmd(char **cmd)
+{
+	char	**cmd_cpy;
+	int		i;
+
+	i = 0;
+	while (cmd[i])
+		i++;
+	cmd_cpy = ft_calloc(i + 1, sizeof(char *));
+	cmd_cpy[i] = NULL;
+	i = 0;
+	while (cmd[i])
+	{
+		cmd_cpy[i] = ft_strdup(cmd[i]);
+		i++;
+	}
+	return  (cmd_cpy);
+}
+
+char	**check_rightcmd(char **cmd, char **path)
 {
 	int		i;
 	char	*full_path;
 
 	i = -1;
+	cmd = deep_copy_cmd(cmd);
 	while (path[++i])
 	{
 		full_path = ft_strjoin(path[i], cmd[0]);
@@ -81,4 +101,5 @@ void	check_rightcmd(char **cmd, char **path)
 		free(full_path);
 	}
 	free_path(path);
+	return (cmd);
 }

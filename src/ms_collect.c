@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 17:58:15 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/04 11:51:55 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 10:49:57 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	collect_status(int size)
 	int	i;
 
 	i = 0;
-	status = 0;
-	g_mini.exit_status = 0;
 	while (i < size)
 	{
 		waitpid(-1, &status, 0);

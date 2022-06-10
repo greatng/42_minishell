@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:16:18 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 21:43:16 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 10:37:02 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		run_builtin(char **cmd, t_cmd *tab_cmd);
 void	collect_status(int size);
 
 //Find correct path for system command
-void	check_rightcmd(char **cmd, char **path);
+char	**check_rightcmd(char **cmd, char **path);
 
 //get path from global environment
 char	**get_path(void);

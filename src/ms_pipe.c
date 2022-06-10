@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 02:01:32 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:25:46 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static void	execute_cmd(char **cmd, t_cmd *tab_cmd)
 	pid = fork();
 	if (!pid)
 	{
-		end_of_loop(tab_cmd);
 		path = get_path();
-		check_rightcmd(cmd, path);
+		cmd = check_rightcmd(cmd, path);
+		end_of_loop(tab_cmd);
 		if (execve(cmd[0], cmd, g_mini.env) == -1)
 		{
 			clean_env();

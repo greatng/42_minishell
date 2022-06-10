@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_phrase_utils.c                                   :+:      :+:    :+:   */
+/*   ms_check_phrases_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:55:27 by pratanac          #+#    #+#             */
-/*   Updated: 2022/05/24 12:02:14 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 11:25:01 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	check_phrase(char *cmd)
 		free_lexer(lex);
 		return (0);
 	}
-	g_mini.exit_status = 0;
 	free_lexer(lex);
 	return (1);
 }

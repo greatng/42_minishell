@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/09 21:58:26 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 10:56:48 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	change_dir(char *cmd)
 		dir = ft_strchr(g_mini.env[i], '/');
 	}
 	if (chdir(dir))
-		perror("");
+		perror(cmd);
 	else
 	{
 		update_pwd(0);
