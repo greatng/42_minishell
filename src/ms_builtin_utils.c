@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_utils.c                                    :+:      :+:    :+:   */
+/*   ms_builtin_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:56:19 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/26 16:11:41 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:23:56 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ void	update_pwd(int mode)
 	if (!check_var_dup(cwd))
 		if (!cwd)
 			add_env(cwd);
-	if (!cwd)
+	if (cwd)
 		free(cwd);
 }

@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:48 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/10 10:37:29 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:45:58 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char	**deep_copy_cmd(char **cmd)
 		cmd_cpy[i] = ft_strdup(cmd[i]);
 		i++;
 	}
-	return  (cmd_cpy);
+	return (cmd_cpy);
 }
 
 char	**check_rightcmd(char **cmd, char **path)
