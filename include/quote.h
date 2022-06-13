@@ -31,5 +31,6 @@ char	*ft_append_env(char *buffer, char *command, int *index);
 
 /* ms_translate_vars.c */
 char	*translate_cmd(char *command);
+char	*translate_cmd_hd(char *command);
 
 #endif

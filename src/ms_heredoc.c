@@ -40,7 +40,7 @@ static char	*here_doc_join(char *res, char *buf, int mode)
 	char	*return_data;
 
 	if (mode)
-		buf = translate_cmd(buf);
+		buf = translate_cmd_hd(buf);
 	tmp = ft_strjoin(buf, "\n");
 	free(buf);
 	buf = tmp;

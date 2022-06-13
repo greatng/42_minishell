@@ -39,3 +39,25 @@ char	*translate_cmd(char *command)
 		free(command);
 	return (buffer);
 }
+
+char	*translate_cmd_hd(char *command)
+{
+	char	*buffer;
+	int		i;
+
+	i = 0;
+	buffer = ft_calloc(1, 1);
+	if (!buffer)
+		return (0);
+	while (command && command[i])
+	{
+		if (command[i] == '$')
+			buffer = ft_append_env(buffer, command, &i);
+		else
+			buffer = ft_append(buffer, command[i]);
+		i++;
+	}
+	if (command)
+		free(command);
+	return (buffer);
+}
