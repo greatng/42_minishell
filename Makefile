@@ -1,5 +1,6 @@
 NAME			=	minishell
 UNAME 			= 	$(shell uname -s)
+ARCH 			= 	$(shell arch)
 
 CC			=	gcc
 CFLAGS			=	-Wall -Wextra -Wextra
@@ -7,10 +8,14 @@ LEAKS			=	-fsanitize=address
 READFLAG		=	-lreadline
 
 ifeq ($(UNAME), Darwin)
-	LDFLAGS			=	-L${HOMEBREW_PREFIX}/opt/readline/lib
-	CPPFLAGS		=	-I${HOMEBREW_PREFIX}/opt/readline/include
+	ifeq ($(ARCH), arm64)
+		LDFLAGS			=	-L${HOMEBREW_PREFIX}/opt/readline/lib
+		CPPFLAGS		=	-I${HOMEBREW_PREFIX}/opt/readline/include
+	else ifeq ($(ARCH), i386)
+		LDFLAGS			=	-L/usr/local/opt/readline/lib
+		CPPFLAGS		=	-I/usr/local/opt/readline/include
+	endif
 endif
-
 
 HEADER_DIR		=	include
 HEADER			=	minishell builtin phrase quote
