@@ -13,10 +13,26 @@
 #include "../include/phrase.h"
 #include "../include/minishell.h"
 
+static	int	is_empty(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	check_phrase(char *cmd)
 {
 	char	**lex;
 
+	if (is_empty(cmd))
+		return (0);
 	if (!is_complete_quote(cmd))
 	{
 		g_mini.exit_status = 2;

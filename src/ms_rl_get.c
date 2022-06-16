@@ -12,6 +12,20 @@
 
 #include "../include/minishell.h"
 
+static	int	is_empty(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 char	*rl_gets(char *line_read)
 {
 	char	buf[100];
@@ -24,7 +38,7 @@ char	*rl_gets(char *line_read)
 	shell = ft_strjoin(GREEN "minihell "RES, wd);
 	line_read = readline(shell);
 	free(shell);
-	if (line_read && *line_read)
+	if (line_read && *line_read && !is_empty(line_read))
 		add_history (line_read);
 	return (line_read);
 }
