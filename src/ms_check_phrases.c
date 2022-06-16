@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/phrase.h"
+#include "../include/minishell.h"
 
 /* return 0 if pharase is in complete */
 /* return 1 when phrase is complete */
@@ -37,7 +38,7 @@ int	is_complete_quote(char *str)
 	}
 	if (flag)
 	{
-		printf("bash: unexpected EOF while looking for matching`%c\'\n", quote);
+		print_eof_error(quote);
 		return (0);
 	}
 	return (1);
@@ -94,11 +95,11 @@ static int	check_syntax(char *cmd)
 	}
 	if (cmd[0] != cmd[1])
 	{
-		printf("bash: syntax error near unexpected token `%s'\n", &cmd[1]);
+		print_token_error(&cmd[1], ft_strlen(&cmd[1]));
 	}
 	else
 	{
-		printf("bash: syntax error near unexpected token `%s'\n", &cmd[2]);
+		print_token_error(&cmd[1], ft_strlen(&cmd[2]));
 	}
 	return (0);
 }
@@ -116,12 +117,11 @@ int	check_lexer(char **lexer)
 		if (is_syntax(lexer[i][0]) == 2 && !check_syntax(lexer[i]))
 			return (0);
 		if (flag > 0 && (is_syntax(lexer[i][0]) >= flag))
-			return (!printf("bash: syntax error near unexpected token \
-					`%s\'\n", lexer[i]));
+			return (print_token_error(lexer[i], ft_strlen(lexer[i])));
 		flag = is_syntax(lexer[i][0]);
 		i++;
 	}
 	if (flag > 0)
-		return (!printf("bash: syntax error near unexpected token `newline\'\n"));
+		return (print_token_error("\n", 1));
 	return (1);
 }

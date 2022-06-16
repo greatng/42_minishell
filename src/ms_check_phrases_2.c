@@ -27,6 +27,30 @@ static	int	is_empty(char *cmd)
 	return (1);
 }
 
+int	print_token_error(char *str, int len)
+{
+	ft_putstr_fd("bash: syntax error near unexpected token `", STDERR_FILENO);
+	if (str[0] == '\n')
+	{
+		ft_putstr_fd("newline", STDERR_FILENO);
+	}
+	else
+	{
+		write(STDERR_FILENO, str, len);
+	}
+	ft_putstr_fd("\'\n", STDERR_FILENO);
+	return (0);
+}
+
+int	print_eof_error(char c)
+{
+	ft_putstr_fd("bash: unexpected EOF while looking", STDERR_FILENO);
+	ft_putstr_fd(" for matching`", STDERR_FILENO);
+	write(STDERR_FILENO, &c, 1);
+	ft_putstr_fd("\'\n", STDERR_FILENO);
+	return (0);
+}
+
 int	check_phrase(char *cmd)
 {
 	char	**lex;
@@ -41,7 +65,7 @@ int	check_phrase(char *cmd)
 	if (is_pipe_error(cmd))
 	{
 		g_mini.exit_status = 2;
-		printf("bash: syntax error near unexpected token `|\'\n");
+		return (print_token_error("|", 1));
 		return (0);
 	}
 	lex = lexer(cmd);

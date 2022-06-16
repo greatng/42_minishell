@@ -22,6 +22,8 @@ int		is_syntax(char c);
 int		check_lexer(char **lexer);
 
 /* ms_check_phrase_2.c*/
+int		print_token_error(char *str, int len);
+int		print_eof_error(char c);
 int		check_phrase(char *cmd);
 
 /* ms_lexer.c*/
