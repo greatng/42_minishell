@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_2.c                                        :+:      :+:    :+:   */
+/*   ms_builtin_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:17:34 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 17:43:19 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 01:40:29 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_env(char **cmd)
 	}
 	else
 	{
-		while (g_mini.env[i])
+		while (g_mini.env && g_mini.env[i])
 		{
 			if (g_mini.env[i][0])
 				printf("%s\n", g_mini.env[i]);
@@ -43,12 +43,8 @@ void	remove_env(char	*remove_var)
 {
 	size_t	i;
 	size_t	len;
-	size_t	size;
 
 	i = 0;
-	size = 0;
-	while (g_mini.env[size])
-		size++;
 	while (g_mini.env[i])
 	{
 		len = strlen_equal(g_mini.env[i]);
@@ -56,7 +52,7 @@ void	remove_env(char	*remove_var)
 		{
 			free(g_mini.env[i]);
 			g_mini.env[i] = ft_strdup("");
-			return ;
+			break ;
 		}
 		i++;
 	}
