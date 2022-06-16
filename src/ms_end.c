@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:39:00 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/16 20:14:50 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:32:50 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ void	end_of_loop(t_cmd *tab_cmd)
 	size_t	i;
 
 	i = 0;
-	if (tab_cmd)
-		free(tab_cmd);
-	if (!tab_cmd)
-		return ;
 	while (i < tab_cmd->size)
 	{
 		if (tab_cmd[i].cmd)
@@ -32,5 +28,7 @@ void	end_of_loop(t_cmd *tab_cmd)
 			close(tab_cmd[i].outfile);
 		i++;
 	}
+	if (tab_cmd)
+		free(tab_cmd);
 	tab_cmd = NULL;
 }
