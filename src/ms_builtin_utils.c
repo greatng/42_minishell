@@ -70,8 +70,6 @@ int	is_var_valid(char *cmd)
 	i = 0;
 	while (cmd[len] && cmd[len] != '=')
 		len++;
-	if (!cmd[len])
-		return (0);
 	if (!ft_isalpha(cmd[0]))
 		return (0);
 	while (i < len)
