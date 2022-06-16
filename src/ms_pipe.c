@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/16 21:31:21 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 01:03:29 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	clean_env(void)
 
 	i = 0;
 	while (g_mini.env[i])
+	{
+		printf("%s\n", g_mini.env[i]);
 		free(g_mini.env[i++]);
+	}
 	free(g_mini.env);
 	return (1);
 }

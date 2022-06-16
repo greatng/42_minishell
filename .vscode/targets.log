@@ -8,13 +8,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Jun 16 22:36:52 2022
+# Make data base, printed on Thu Jun 16 23:18:08 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
- 
 # automatic
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 33)
@@ -37,6 +36,7 @@ CURDIR := /Users/greatng/42Bangkok/42cursus/42_minishell
 SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+ 
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 6)
@@ -232,7 +232,7 @@ _CE_CONDA =
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=109/1024=11%, Rehash=0, Collisions=10/150=7%
+# Load=109/1024=11%, Rehash=0, Collisions=11/153=7%
 
 # Pattern-specific Variable Values
 
@@ -240,10 +240,9 @@ LANG = C
 
 # Directories
 
-# . (device 16777233, inode 12501341): 8 files, no impossibilities.
+# . (device 16777233, inode 12501341): 10 files, no impossibilities.
 
-# 8 files, no impossibilities in 1 directories.
- 
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -285,7 +284,7 @@ obj/ms_quote_utils.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft leaks
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -320,40 +319,6 @@ obj/ms_path.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-pig:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 70):
-	@echo "$(SALMON)                         .....            :!????7!^:\n\
-	.^!J5PGGBGG5::~!77?77~:G&&&&&&&&#GY!.\n\
-	.?G#&&&&&&&&&B^G&&&&&&&B^G&&&&&&&&&&&#^\n\
-	.P&&&&&&&&&&#!?&&&&&&&&&J~B&&&&&&&&#Y^\n\
-	.JB&&&&&&&G!J&&&&&&&&&&&Y!YB###B5J??^\n\
-	~??5GGG5?7P&&&&&&&&&&&&&#5JJJJJ5G&&#5^\n\
-	.J&&BPYYY5G&&&&&&&&&&&&&&&&&&&#&&&&&&&&#~\n\
-	.Y&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&B^\n\
-	!&&&&&&&&&&&&BG#&&&&&&&&&BJY#&&&&&&&&&&&&&P.\n\
-	.5&&&&&&&&&&&#^ ?&&&&&&&&&5:^B&&&&&&&&&&&&&&Y.\n\
-	^#&&&&&&&&&&&&BPB$(HOTPINK)#BGGGGGGGBB$(SALMON)#&&&&&&&&&&&&&&&&J.\n\
-	.5&&&&&&&&&&&&&$(HOTPINK)#BPPPP5PP55PPPPB$(SALMON)&&&&&&&&&&&&&&&&!\n\
-	7&&&&&&&&&&&&&&$(HOTPINK)#PPPP?^5P!~PPPPG&$(SALMON)&&&#######&&&&&5.\n\
-	.Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#$(HOTPINK)BBGBGBB$(SALMON)##&&&B:\n\
-	J&&&##$(HOTPINK)BBBBBB$(SALMON)##&&&&#BBBBBB#PB&&&&&##$(HOTPINK)BGGPPGBB$(SALMON)#&&&P.\n\
-	:B&&#$(HOTPINK)BBGPPGGB$(SALMON)##&&&&#JYPPPJ?B&&&&&&#$(HOTPINK)BBGGGBB$(SALMON)##&&#!\n\
-	^G&&#$(HOTPINK)BBGGGBB$(SALMON)#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
-	.?G########&&&&&&&&&&&&&&&&&&&&&&&&#G5YJJJYY5PY!.\n\
-	^7J5GB#&&&&&&&&&&&&&&&&&&&&&&&&#YJPG##&&&&&@P.\n\
-	:~!!777777?B&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#GJ:\n\
-	.J#&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&&&#BBP5?!^.\n\
-	.7B#&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&&&Y^.\n\
-	.^~!777777Y#&&&&&&&&&&&&&&&&&&&&&&&&&&&?\n\
-	~&&&&&&&&&&&&&&&&&&&&&&&&&&&&&P.\n\
-	^#&&&&&&&&&&&&&&&&&&&&&&&&&&&&G.\n\
-	^~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n\
-	$(NORMAL)I'm the piglosopher !"
-	
-
 libft:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
@@ -362,6 +327,7 @@ libft:
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
+ 
 # @ := libft
 # automatic
 # % := 
@@ -404,7 +370,7 @@ obj/ms_conver_1.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-16 21:17:08
+#  Last modified 2022-06-16 23:00:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -422,7 +388,7 @@ minishell: obj/main.o obj/ms_builtin_1.o obj/ms_builtin_2.o obj/ms_builtin_utils
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 47):
 	@echo "$(GREEN)Compiling:$(NORMAL)"
-	$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -g3 -o $@
+	$(CC) $(CFLAGS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@
 	
 
 # Not a target:
@@ -452,6 +418,16 @@ obj/ms_quote_utils_2.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+leaks: libft obj/main.o obj/ms_builtin_1.o obj/ms_builtin_2.o obj/ms_builtin_utils.o obj/ms_free_heredoc.o obj/ms_end.o obj/ms_free_phrase.o obj/ms_lexer.o obj/ms_parser.o obj/ms_pipe.o obj/ms_heredoc.o obj/ms_check_phrases.o obj/ms_quote_utils.o obj/ms_rl_get.o obj/ms_signal.o obj/ms_translate_vars.o obj/ms_init.o obj/ms_conver_1.o obj/ms_conver_2.o obj/ms_path.o obj/ms_run_builtin.o obj/ms_collect.o obj/ms_check_phrases_2.o obj/ms_quote_utils_2.o
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 70):
+	@echo "$(GREEN)Compiling:$(NORMAL)"
+	$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@
+	
 
 # Not a target:
 obj/ms_free_phrase.o:
@@ -524,7 +500,6 @@ obj/ms_run_builtin.o:
 #  File has not been updated.
 
 # Not a target:
- 
 obj/ms_parser.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -537,7 +512,7 @@ obj/ms_signal.o:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=35/1024=3%, Rehash=0, Collisions=0/83=0%
+# Load=35/1024=3%, Rehash=0, Collisions=0/109=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -549,6 +524,6 @@ obj/ms_signal.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jun 16 22:36:52 2022
+# Finished Make data base on Thu Jun 16 23:18:08 2022
 
  
