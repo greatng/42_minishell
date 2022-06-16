@@ -70,7 +70,7 @@ void	add_env(char *new_var)
 	i = 0;
 	while (g_mini.env[i])
 		i++;
-	tmp = ft_calloc(i + 1, sizeof(char *));
+	tmp = ft_calloc(i + 2, sizeof(char *));
 	tmp[i + 1] = NULL;
 	tmp[i] = ft_strdup(new_var);
 	i = 0;

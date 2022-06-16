@@ -18,8 +18,6 @@ void	end_of_loop(t_cmd *tab_cmd)
 	size_t	i;
 
 	i = 0;
-	if (!tab_cmd)
-		printf("Null\n");
 	while (i < tab_cmd->size)
 	{
 		if (tab_cmd[i].cmd)
