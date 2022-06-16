@@ -1,0 +1,55 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/greatng/42Bangkok/42cursus/42_minishell'
+make -C ./libft/	
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/main.c -o obj/main.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_builtin_1.c -o obj/ms_builtin_1.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_builtin_2.c -o obj/ms_builtin_2.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_builtin_utils.c -o obj/ms_builtin_utils.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_free_heredoc.c -o obj/ms_free_heredoc.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_end.c -o obj/ms_end.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_free_phrase.c -o obj/ms_free_phrase.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_lexer.c -o obj/ms_lexer.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_parser.c -o obj/ms_parser.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_pipe.c -o obj/ms_pipe.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_heredoc.c -o obj/ms_heredoc.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_check_phrases.c -o obj/ms_check_phrases.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_quote_utils.c -o obj/ms_quote_utils.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_rl_get.c -o obj/ms_rl_get.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_signal.c -o obj/ms_signal.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_translate_vars.c -o obj/ms_translate_vars.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_init.c -o obj/ms_init.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_conver_1.c -o obj/ms_conver_1.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_conver_2.c -o obj/ms_conver_2.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_path.c -o obj/ms_path.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_run_builtin.c -o obj/ms_run_builtin.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_collect.c -o obj/ms_collect.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_check_phrases_2.c -o obj/ms_check_phrases_2.o 
+mkdir -p obj
+gcc -I/opt/homebrew/opt/readline/include -Wall -Wextra -Wextra  -c src/ms_quote_utils_2.c -o obj/ms_quote_utils_2.o 
+echo "\033[38;5;2mCompiling:\033[38;5;255m"
+gcc -Wall -Wextra -Wextra -fsanitize=address -lreadline -L/opt/homebrew/opt/readline/lib -I/opt/homebrew/opt/readline/include obj/main.o obj/ms_builtin_1.o obj/ms_builtin_2.o obj/ms_builtin_utils.o obj/ms_free_heredoc.o obj/ms_end.o obj/ms_free_phrase.o obj/ms_lexer.o obj/ms_parser.o obj/ms_pipe.o obj/ms_heredoc.o obj/ms_check_phrases.o obj/ms_quote_utils.o obj/ms_rl_get.o obj/ms_signal.o obj/ms_translate_vars.o obj/ms_init.o obj/ms_conver_1.o obj/ms_conver_2.o obj/ms_path.o obj/ms_run_builtin.o obj/ms_collect.o obj/ms_check_phrases_2.o obj/ms_quote_utils_2.o libft/libft.a -g3 -o minishell
+make: Leaving directory `/Users/greatng/42Bangkok/42cursus/42_minishell'
+ 

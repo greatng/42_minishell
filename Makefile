@@ -45,7 +45,7 @@ all:				libft $(NAME)
 
 $(NAME):			$(OBJ)
 					@echo "$(GREEN)Compiling:$(NORMAL)"
-					$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -g3 -o $@
+					$(CC) $(CFLAGS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(HEADERS) 
 					@mkdir -p $(OBJ_DIR)
@@ -64,33 +64,8 @@ fclean:				clean
 					
 re:					fclean all
 
-.PHONY:				all clean fclean re libft
+.PHONY:				all clean fclean re libft leaks
 
-pig:				
-					@echo "$(SALMON)                         .....            :!????7!^:\n\
-                   .^!J5PGGBGG5::~!77?77~:G&&&&&&&&#GY!.\n\
-                 .?G#&&&&&&&&&B^G&&&&&&&B^G&&&&&&&&&&&#^\n\
-                 .P&&&&&&&&&&#!?&&&&&&&&&J~B&&&&&&&&#Y^\n\
-                  .JB&&&&&&&G!J&&&&&&&&&&&Y!YB###B5J??^\n\
-                   ~??5GGG5?7P&&&&&&&&&&&&&#5JJJJJ5G&&#5^\n\
-                 .J&&BPYYY5G&&&&&&&&&&&&&&&&&&&#&&&&&&&&#~\n\
-                .Y&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&B^\n\
-                !&&&&&&&&&&&&BG#&&&&&&&&&BJY#&&&&&&&&&&&&&P.\n\
-               .5&&&&&&&&&&&#^ ?&&&&&&&&&5:^B&&&&&&&&&&&&&&Y.\n\
-               ^#&&&&&&&&&&&&BPB$(HOTPINK)#BGGGGGGGBB$(SALMON)#&&&&&&&&&&&&&&&&J.\n\
-              .5&&&&&&&&&&&&&$(HOTPINK)#BPPPP5PP55PPPPB$(SALMON)&&&&&&&&&&&&&&&&!\n\
-              7&&&&&&&&&&&&&&$(HOTPINK)#PPPP?^5P!~PPPPG&$(SALMON)&&&#######&&&&&5.\n\
-             .Y&&&&&#######&&&$(HOTPINK)BGPP55PPP5PPGB#$(SALMON)&&&#$(HOTPINK)BBGBGBB$(SALMON)##&&&B:\n\
-              J&&&##$(HOTPINK)BBBBBB$(SALMON)##&&&&#BBBBBB#PB&&&&&##$(HOTPINK)BGGPPGBB$(SALMON)#&&&P.\n\
-              :B&&#$(HOTPINK)BBGPPGGB$(SALMON)##&&&&#JYPPPJ?B&&&&&&#$(HOTPINK)BBGGGBB$(SALMON)##&&#!\n\
-               ^G&&#$(HOTPINK)BBGGGBB$(SALMON)#&&&&&&#BPPGB&&&&&&&&########BBP!.\n\
-                .?G########&&&&&&&&&&&&&&&&&&&&&&&&#G5YJJJYY5PY!.\n\
-                   ^7J5GB#&&&&&&&&&&&&&&&&&&&&&&&&#YJPG##&&&&&@P.\n\
-               :~!!777777?B&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#GJ:\n\
-             .J#&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&&&#BBP5?!^.\n\
-             .7B#&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&&&Y^.\n\
-               .^~!777777Y#&&&&&&&&&&&&&&&&&&&&&&&&&&&?\n\
-                        ~&&&&&&&&&&&&&&&&&&&&&&&&&&&&&P.\n\
-                        ^#&&&&&&&&&&&&&&&&&&&&&&&&&&&&G.\n\
-                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n\
-				      $(NORMAL)I'm the piglosopher !"
+leaks:				libft $(OBJ)
+					@echo "$(GREEN)Compiling:$(NORMAL)"
+					$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@

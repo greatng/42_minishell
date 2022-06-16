@@ -6,25 +6,24 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:48 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/10 14:45:58 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:53:13 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	free_path(char **path)
+static void	free_path(char **path)
 {
 	size_t	i;
 
 	i = 0;
-	while (path[i])
+	while (path && path[i])
 	{
 		free(path[i]);
 		i++;
 	}
 	if (path)
 		free(path);
-	return (1);
 }
 
 static char	**path_correction(char *env)
@@ -56,10 +55,12 @@ char	**get_path(void)
 	while (g_mini.env[++i])
 	{
 		if (!ft_strncmp(g_mini.env[i], "PATH=", 5))
+		{
+			free(path);
+			path = path_correction(g_mini.env[i]);
 			break ;
+		}
 	}
-	if (!ft_strncmp(g_mini.env[i], "PATH=", 5))
-		path = path_correction(g_mini.env[i]);
 	return (path);
 }
 
@@ -89,7 +90,7 @@ char	**check_rightcmd(char **cmd, char **path)
 
 	i = -1;
 	cmd = deep_copy_cmd(cmd);
-	while (path[++i])
+	while (path && path[++i])
 	{
 		full_path = ft_strjoin(path[i], cmd[0]);
 		if (!access(full_path, X_OK))
