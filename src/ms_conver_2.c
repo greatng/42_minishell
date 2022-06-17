@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:24:41 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/05 21:10:02 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:20:01 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,29 +66,8 @@ static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 	}
 }
 
-//Free char ***cmd
-static void	clean_cmd(char ***cmd)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (cmd[i])
-	{
-		j = 0;
-		while (cmd[i][j])
-		{
-			free(cmd[i][j]);
-			j++;
-		}
-		free(cmd[i]);
-		i++;
-	}
-	free(cmd);
-}
-
 //Open file for input, output and assign in Struct fd
-void	struct_fd(t_cmd *cmd, char ***cmd_arr)
+void	struct_fd(t_cmd *block_cmd, char ***cmd_arr)
 {
 	size_t	i;
 	size_t	j;
@@ -101,14 +80,14 @@ void	struct_fd(t_cmd *cmd, char ***cmd_arr)
 		{
 			if (check_redirection(cmd_arr[i][j]))
 			{
-				check_outfile(&cmd[i], cmd_arr[i], j);
-				check_infile(&cmd[i], cmd_arr[i], j);
+				check_outfile(&block_cmd[i], cmd_arr[i], j);
+				check_infile(&block_cmd[i], cmd_arr[i], j);
 			}
 			j++;
 		}
 		i++;
 	}
-	clean_cmd(cmd_arr);
+	free_parser(cmd_arr);
 }
 
 //Check if it redirection

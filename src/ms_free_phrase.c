@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4_free_phrase.c                                    :+:      :+:    :+:   */
+/*   ms_free_phrase.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 12:06:23 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/05/24 12:06:30 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:14:17 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void	free_lexer(char **lex)
 	int	i;
 
 	i = 0;
-	while (lex[i])
+	while (lex && lex[i])
 	{
 		free(lex[i]);
 		i++;
 	}
-	free(lex);
+	if (lex)
+		free(lex);
 }
 
 void	free_parser(char ***par)

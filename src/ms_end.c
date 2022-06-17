@@ -6,29 +6,29 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 15:39:00 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/16 23:19:18 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:23:53 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 //Clear memory every end-of-loop
-void	end_of_loop(t_cmd *tab_cmd)
+void	end_of_loop(t_cmd *block_cmd)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < tab_cmd->size)
+	while (i < block_cmd->size)
 	{
-		if (tab_cmd[i].cmd)
-			free_lexer(tab_cmd[i].cmd);
-		if (tab_cmd[i].infile != STDIN_FILENO)
-			close(tab_cmd[i].infile);
-		if (tab_cmd[i].outfile != STDOUT_FILENO)
-			close(tab_cmd[i].outfile);
+		if (block_cmd[i].cmd)
+			free_lexer(block_cmd[i].cmd);
+		if (block_cmd[i].infile != STDIN_FILENO)
+			close(block_cmd[i].infile);
+		if (block_cmd[i].outfile != STDOUT_FILENO)
+			close(block_cmd[i].outfile);
 		i++;
 	}
-	if (tab_cmd)
-		free(tab_cmd);
-	tab_cmd = NULL;
+	if (block_cmd)
+		free(block_cmd);
+	block_cmd = NULL;
 }

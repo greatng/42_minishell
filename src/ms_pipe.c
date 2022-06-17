@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/17 09:47:05 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:23:43 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,23 @@ static void	reset_fd(int *pipefd, int *savefd)
 	close(pipefd[PIPEWR]);
 }
 
-static void	redirect_fd(t_cmd *tab_cmd, size_t i, int *pipefd)
+static void	redirect_fd(t_cmd *block_cmd, size_t i, int *pipefd)
 {
-	if (i > 0 && tab_cmd[i].infile == STDIN_FILENO)
+	if (i > 0 && block_cmd[i].infile == STDIN_FILENO)
 	{
 		dup2(pipefd[PIPERD], STDIN_FILENO);
 		close(pipefd[PIPERD]);
 	}
 	else
-		dup2(tab_cmd[i].infile, STDIN_FILENO);
+		dup2(block_cmd[i].infile, STDIN_FILENO);
 	pipe(pipefd);
-	if (tab_cmd[i].outfile == STDOUT_FILENO && i < tab_cmd->size - 1)
+	if (block_cmd[i].outfile == STDOUT_FILENO && i < block_cmd->size - 1)
 		dup2(pipefd[PIPEWR], STDOUT_FILENO);
 	else
-		dup2(tab_cmd[i].outfile, STDOUT_FILENO);
+		dup2(block_cmd[i].outfile, STDOUT_FILENO);
 }
 
-static void	execute_cmd(char **cmd, t_cmd *tab_cmd)
+static void	execute_cmd(char **cmd, t_cmd *block_cmd)
 {
 	pid_t	pid;
 	char	**path;
@@ -55,7 +55,7 @@ static void	execute_cmd(char **cmd, t_cmd *tab_cmd)
 	{
 		path = get_path();
 		cmd = check_rightcmd(cmd, path);
-		end_of_loop(tab_cmd);
+		end_of_loop(block_cmd);
 		if (execve(cmd[0], cmd, g_mini.env) == -1)
 		{
 			clean_env();
@@ -66,7 +66,7 @@ static void	execute_cmd(char **cmd, t_cmd *tab_cmd)
 	}
 }
 
-void	shell_execute(t_cmd *tab_cmd)
+void	shell_execute(t_cmd *block_cmd)
 {
 	int	i;
 	int	savefd[2];
@@ -78,15 +78,15 @@ void	shell_execute(t_cmd *tab_cmd)
 	savefd[1] = dup(STDOUT_FILENO);
 	savefd[0] = dup(STDIN_FILENO);
 	shell_child_signal();
-	while (++i < (int)tab_cmd->size)
+	while (++i < (int)block_cmd->size)
 	{
-		if (!tab_cmd[i].cmd[0])
+		if (!block_cmd[i].cmd[0])
 			break ;
-		redirect_fd(tab_cmd, i, pipefd);
-		if (!run_builtin(tab_cmd[i].cmd, tab_cmd))
+		redirect_fd(block_cmd, i, pipefd);
+		if (!run_builtin(block_cmd[i].cmd, block_cmd))
 		{
 			count++;
-			execute_cmd(tab_cmd[i].cmd, tab_cmd);
+			execute_cmd(block_cmd[i].cmd, block_cmd);
 		}
 		reset_fd(pipefd, savefd);
 	}

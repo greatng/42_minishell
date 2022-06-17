@@ -6,64 +6,52 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:48 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/17 09:47:15 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:14:01 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	free_path(char **path)
-{
-	size_t	i;
-
-	i = 0;
-	while (path && path[i])
-	{
-		free(path[i]);
-		i++;
-	}
-	if (path)
-		free(path);
-}
-
 static char	**path_correction(char *env)
 {
 	char	**path;
-	char	*path_var;
+	char	*path_value;
 	char	*tmp;
-	int		i;
+	size_t	i;
 
-	path_var = ft_strchr(env, '/');
-	if (!path_var)
+	path_value = ft_strchr(env, '/');
+	if (!path_value)
 		return (NULL);
-	path = ft_split(path_var, ':');
-	i = -1;
-	while (path[++i])
+	path = ft_split(path_value, ':');
+	i = 0;
+	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
 		free(path[i]);
 		path[i] = tmp;
+		i++;
 	}
 	return (path);
 }
 
 char	**get_path(void)
 {
-	int		i;
+	size_t	i;
 
-	i = -1;
-	while (g_mini.env[++i])
+	i = 0;
+	while (g_mini.env[i])
 	{
 		if (!ft_strncmp(g_mini.env[i], "PATH=", 5))
 			return (path_correction(g_mini.env[i]));
+		i++;
 	}
 	return (NULL);
 }
 
-static char	**deep_copy_cmd(char **cmd)
+static char	**deep_copy(char **cmd)
 {
-	char	**cmd_cpy;
-	int		i;
+	char		**cmd_cpy;
+	size_t		i;
 
 	i = 0;
 	while (cmd[i])
@@ -81,12 +69,12 @@ static char	**deep_copy_cmd(char **cmd)
 
 char	**check_rightcmd(char **cmd, char **path)
 {
-	int		i;
-	char	*full_path;
+	size_t		i;
+	char		*full_path;
 
-	i = -1;
-	cmd = deep_copy_cmd(cmd);
-	while (path && path[++i])
+	i = 0;
+	cmd = deep_copy(cmd);
+	while (path && path[i])
 	{
 		full_path = ft_strjoin(path[i], cmd[0]);
 		if (!access(full_path, X_OK))
@@ -96,7 +84,9 @@ char	**check_rightcmd(char **cmd, char **path)
 			break ;
 		}
 		free(full_path);
+		i++;
 	}
-	free_path(path);
+	if (path)
+		free_lexer(path);
 	return (cmd);
 }
