@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:48 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/16 22:53:13 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:14:48 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static char	**path_correction(char *env)
 	int		i;
 
 	path_var = ft_strchr(env, '/');
+	if (!path_var)
+		return (NULL);
 	path = ft_split(path_var, ':');
 	i = -1;
 	while (path[++i])
