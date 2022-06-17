@@ -12,6 +12,61 @@
 
 #include "../include/minishell.h"
 
+static int	is_numeric(char	*input)
+{
+	int	i;
+
+	i = 0;
+	if (input && (input[i] == '+' || input[i] == '-'))
+		i++;
+	while (input[i])
+	{
+		if (!ft_isdigit(input[i]))
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+static void	set_exit(char **cmd)
+{
+	unsigned int	i;
+
+	i = 0;
+	if (!is_numeric(cmd[1]))
+	{
+		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
+		ft_putstr_fd(cmd[1], STDERR_FILENO);
+		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
+		g_mini.exit_status = 255;
+		return ;
+	}
+	i = ft_atoi(cmd[1]);
+	g_mini.exit_status = i % 256;
+	return ;
+}
+
+static int	check_arg_exit(char **cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd && cmd[i])
+		i++;
+	if (i <= 2)
+	{
+		if (i > 1)
+			set_exit(cmd);
+		return (1);
+	}
+	ft_putstr_fd("exit\n", STDERR_FILENO);
+	ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
+	g_mini.exit_status = 1;
+	return (0);
+}
+
 int	run_builtin(char **cmd, t_cmd *tab_cmd)
 {
 	if (!ft_strncmp("cd", cmd[0], 3))
@@ -22,6 +77,8 @@ int	run_builtin(char **cmd, t_cmd *tab_cmd)
 		shell_echo(cmd);
 	else if (!ft_strncmp("exit", cmd[0], 5))
 	{
+		if (!check_arg_exit(cmd))
+			return (1);
 		end_of_loop(tab_cmd);
 		shell_exit();
 	}

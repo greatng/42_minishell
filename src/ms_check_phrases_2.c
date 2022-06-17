@@ -29,7 +29,8 @@ static	int	is_empty(char *cmd)
 
 int	print_token_error(char *str, int len)
 {
-	ft_putstr_fd("bash: syntax error near unexpected token `", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
 	if (str[0] == '\n')
 	{
 		ft_putstr_fd("newline", STDERR_FILENO);
@@ -44,8 +45,8 @@ int	print_token_error(char *str, int len)
 
 int	print_eof_error(char c)
 {
-	ft_putstr_fd("bash: unexpected EOF while looking", STDERR_FILENO);
-	ft_putstr_fd(" for matching`", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd("unexpected EOF while looking for matching`", STDERR_FILENO);
 	write(STDERR_FILENO, &c, 1);
 	ft_putstr_fd("\'\n", STDERR_FILENO);
 	return (0);
