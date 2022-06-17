@@ -17,20 +17,21 @@ void	change_dir(char *cmd)
 	size_t	i;
 	char	*dir;
 
-	i = 0;
+	i = -1;
 	dir = cmd;
 	update_pwd(1);
 	if (!dir)
 	{
-		while (g_mini.env[i])
+		while (g_mini.env[++i])
 		{
 			if (!ft_strncmp("HOME=", g_mini.env[i], 5))
+			{
+				dir = ft_strchr(g_mini.env[i], '/');
 				break ;
-			i++;
+			}
 		}
-		dir = ft_strchr(g_mini.env[i], '/');
 	}
-	if (chdir(dir))
+	if (dir && chdir(dir))
 		perror(cmd);
 	else
 	{
