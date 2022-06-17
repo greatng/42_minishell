@@ -45,7 +45,7 @@ all:				libft $(NAME)
 
 $(NAME):			$(OBJ)
 					@echo "$(GREEN)Compiling:$(NORMAL)"
-					$(CC) $(CFLAGS) $(LEAKS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@
+					$(CC) $(CFLAGS) $(READFLAG) $(LDFLAGS) $(CPPFLAGS) $(OBJ) $(LIBFT) -o $@
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(HEADERS) 
 					@mkdir -p $(OBJ_DIR)
