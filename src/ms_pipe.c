@@ -6,13 +6,13 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:32:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/17 01:11:25 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:47:05 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	clean_env(void)
+void	clean_env(void)
 {
 	int	i;
 
@@ -20,7 +20,6 @@ int	clean_env(void)
 	while (g_mini.env[i])
 		free(g_mini.env[i++]);
 	free(g_mini.env);
-	return (1);
 }
 
 static void	reset_fd(int *pipefd, int *savefd)

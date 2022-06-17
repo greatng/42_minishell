@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:45:48 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/17 09:14:48 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:47:15 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,15 @@ static char	**path_correction(char *env)
 
 char	**get_path(void)
 {
-	char	**path;
 	int		i;
 
 	i = -1;
-	path = NULL;
 	while (g_mini.env[++i])
 	{
 		if (!ft_strncmp(g_mini.env[i], "PATH=", 5))
-		{
-			free(path);
-			path = path_correction(g_mini.env[i]);
-			break ;
-		}
+			return (path_correction(g_mini.env[i]));
 	}
-	return (path);
+	return (NULL);
 }
 
 static char	**deep_copy_cmd(char **cmd)
