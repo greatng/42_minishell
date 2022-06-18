@@ -27,6 +27,7 @@ int		print_eof_error(char c);
 int		check_phrase(char *cmd);
 
 /* ms_lexer.c*/
+int		skip_quote(char *line, int index);
 char	**lexer(char *line);
 
 /* ms_parser.c*/

@@ -13,7 +13,7 @@
 #include "../include/phrase.h"
 
 /*need to handle when pipe on first and last character*/
-static int	skip_quote(char *line, int index)
+int	skip_quote(char *line, int index)
 {
 	char	quote;
 	int		i;

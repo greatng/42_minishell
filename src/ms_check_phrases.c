@@ -62,10 +62,11 @@ int	is_pipe_error(char *line)
 			last = 1;
 		}
 		else
-		{
 			last = 0;
-		}
-		i++;
+		if (line[i] == '\'' || line[i] == '\"')
+			i += skip_quote(line, i);
+		if (line[i])
+			i++;
 	}
 	if (i > 0 && line[i - 1] == '|')
 		return (2);
