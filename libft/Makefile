@@ -24,13 +24,10 @@ BLUE = \033[38;5;4m
 all: $(NAME)
 
 %.o: %.c
-	@echo "$(GREEN)Compiling:$(NORMAL)"
-	gcc -Wall -Wextra -Werror -c -o $@ $<
+	@gcc -Wall -Wextra -Werror -c -o $@ $<
 
 $(NAME): $(SOURCE_O)
-	@echo "$(BLUE)Adding to library...$(NORMAL)"
 	@ar rc $(NAME) $(SOURCE_O) $?
-	@echo "$(GREEN)Successfully added to library!$(NORMAL)"
 
 clean:
 	@echo "$(RED)Removing all object files...$(NORMAL)"

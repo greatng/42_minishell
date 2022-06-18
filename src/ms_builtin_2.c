@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:17:34 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/17 01:40:29 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/18 20:17:05 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	print_env(char **cmd)
 	}
 	else
 	{
-		while (g_mini.env && g_mini.env[i])
+		while (g_mini.env && g_mini.env[i - 1])
 		{
-			if (g_mini.env[i][0])
-				printf("%s\n", g_mini.env[i]);
+			if (g_mini.env[i - 1][0])
+				printf("%s\n", g_mini.env[i - 1]);
 			i++;
 		}
 		g_mini.exit_status = 0;

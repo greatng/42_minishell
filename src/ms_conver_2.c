@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:24:41 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/17 21:20:01 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/18 21:08:58 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static void	check_infile(t_cmd *cmd, char **cmd_arg, int j)
 			cmd->infile = open(cmd_arg[j + 1], \
 				O_RDONLY, 0755);
 			if (cmd->infile == -1)
+			{
 				perror(cmd_arg[j + 1]);
+				g_mini.exit_status = 1;
+			}
 		}
 	}
 }
@@ -80,8 +83,9 @@ void	struct_fd(t_cmd *block_cmd, char ***cmd_arr)
 		{
 			if (check_redirection(cmd_arr[i][j]))
 			{
-				check_outfile(&block_cmd[i], cmd_arr[i], j);
 				check_infile(&block_cmd[i], cmd_arr[i], j);
+				if (block_cmd[i].infile != -1)
+					check_outfile(&block_cmd[i], cmd_arr[i], j);
 			}
 			j++;
 		}
