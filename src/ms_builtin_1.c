@@ -6,19 +6,19 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:51:51 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/10 10:56:48 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/17 23:45:29 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/builtin.h"
 
-void	change_dir(char *cmd)
+void	change_dir(char *dir_path)
 {
 	size_t	i;
 	char	*dir;
 
 	i = -1;
-	dir = cmd;
+	dir = dir_path;
 	update_pwd(1);
 	if (!dir)
 	{
@@ -32,7 +32,7 @@ void	change_dir(char *cmd)
 		}
 	}
 	if (dir && chdir(dir))
-		perror(cmd);
+		perror(dir_path);
 	else
 	{
 		update_pwd(0);
