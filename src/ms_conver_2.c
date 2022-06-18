@@ -6,7 +6,7 @@
 /*   By: pngamcha <pngamcha@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 00:24:41 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/06/18 21:08:58 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/06/18 21:58:17 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 			if (cmd->outfile != STDOUT_FILENO)
 				close(cmd->outfile);
 			cmd->outfile = open(cmd_arg[j + 1], \
-				O_RDWR | O_APPEND | O_CREAT, 0755);
+				O_RDWR | O_APPEND | O_CREAT, 0644);
 		}
 	}
 	else if (!ft_strncmp(cmd_arg[j], ">", 2))
@@ -64,7 +64,7 @@ static void	check_outfile(t_cmd *cmd, char **cmd_arg, int j)
 			if (cmd->outfile != STDOUT_FILENO)
 				close(cmd->outfile);
 			cmd->outfile = open(cmd_arg[j + 1], \
-				O_WRONLY | O_TRUNC | O_CREAT, 0755);
+				O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		}
 	}
 }
@@ -86,6 +86,8 @@ void	struct_fd(t_cmd *block_cmd, char ***cmd_arr)
 				check_infile(&block_cmd[i], cmd_arr[i], j);
 				if (block_cmd[i].infile != -1)
 					check_outfile(&block_cmd[i], cmd_arr[i], j);
+				else
+					break ;
 			}
 			j++;
 		}
