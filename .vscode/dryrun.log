@@ -1,7 +1,1 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/greatng/42Bangkok/42cursus/42_minishell'
- 
-make -C ./libft/	
- 
-make: Leaving directory `/Users/greatng/42Bangkok/42cursus/42_minishell'
- 
+make --dry-run --always-make --keep-going --print-directory
